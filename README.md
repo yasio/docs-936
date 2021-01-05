@@ -1,6 +1,6 @@
 # docs-936
 
-yasio 简体中文文档, 文档构建工具: [mkdocs](https://www.mkdocs.org/)
+yasio 中文文档, 文档构建工具: [mkdocs](https://www.mkdocs.org/)
 
 ## Install mkdocs with mkdocs-material
 - Install python3+
