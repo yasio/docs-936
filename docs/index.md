@@ -4,23 +4,23 @@
 [![GitHub stars](https://img.shields.io/github/stars/yasio/yasio.svg?label=Stars)](https://github.com/yasio/yasio)
 [![Docs Status](https://readthedocs.org/projects/yasio-docs-437/badge/?version=latest)](https://readthedocs.org/projects/yasio-docs-437)
 
-*yasio is a multi-platform support c++11 library with focus on asio (asynchronous socket I/O) for any client application, support windows & linux & apple & android & win10-universal.*
+yasio 是一个轻量级跨平台的异步socket库，专注于客户端和基于各种游戏引擎的游戏客户端网络服务。
 
-- Languages:
+- 文档语言:
     - [English](https://docs.yasio.org/en/latest/)
     - [简体中文](https://docs.yasio.org/zh_CN/latest/)
-- Cross-platform:
-    - Compiler: 
+- 跨平台性:
+    - 编译器: 
         - Visual Studio 2013+
         - GCC4.7+
         - xcode9+
-        - Other C++11,14,17 Compilers
+        - 其他支持 C++11,14,17 的编译器
 
-    - Architecture: x86, x64, ARM and etc.
-    - OS: Windows, macOS, Linux, FreeBSD, iOS, Android And etc.
+    - 架构: x86, x64, ARM等。
+    - 操作系统: Windows, macOS, Linux, FreeBSD, iOS, Android等。
 
-## Quick Start
-This demo simply send http request to ``tool.chinaz.com`` and print resposne data.
+## 快速开始
+此实例程序简单向 ``tool.chinaz.com`` 发送http请求并打印响应数据。
 
 === "C++"
 
@@ -116,23 +116,23 @@ This demo simply send http request to ``tool.chinaz.com`` and print resposne dat
 ## The [tests](https://github.com/yasio/yasio/tree/master/tests) & [examples](https://github.com/yasio/yasio/tree/master/tests):
 
 * tests:
-    * [echo_server](https://github.com/yasio/yasio/tree/master/tests/echo_server): TCP/UDP/KCP echo server
-    * [echo_client](https://github.com/yasio/yasio/tree/master/tests/echo_client): TCP/UDP/KCP echo client
-    * [ssltest](https://github.com/yasio/yasio/tree/master/tests/ssl): SSL client test, Get github.com home page
-    * [tcptest](https://github.com/yasio/yasio/tree/master/tests/tcp): TCP test
-    * [speedtest](https://github.com/yasio/yasio/tree/master/tests/speed): TCP,UDP,KCP local transfer
-    * [mcast](https://github.com/yasio/yasio/tree/master/tests/mcast): multi-cast test program
+    * [echo_server](https://github.com/yasio/yasio/tree/master/tests/echo_server): TCP/UDP/KCP 回射服务器
+    * [echo_client](https://github.com/yasio/yasio/tree/master/tests/echo_client): TCP/UDP/KCP 回射客户端
+    * [ssltest](https://github.com/yasio/yasio/tree/master/tests/ssl): SSL测试客户端, 请求github.com主页并打印返回数据
+    * [tcptest](https://github.com/yasio/yasio/tree/master/tests/tcp): TCP测试程序
+    * [speedtest](https://github.com/yasio/yasio/tree/master/tests/speed): TCP,UDP,KCP 本机传输速率测试程序
+    * [mcast](https://github.com/yasio/yasio/tree/master/tests/mcast): 组播测试程序
 
 * examples:
-    * [ftp_server](https://github.com/yasio/ftp_server): A simple ftp server only support file download which is based on yasio，[click](ftp://ftp.yasio.org/) to visit.
-    * [lua](https://github.com/yasio/yasio/tree/master/examples/lua): lua test contains http request，TCP unpack test code.
-    * [xlua](https://github.com/yasio/xLua): Unity3D xlua Integration Demo.
-    * [DemoUE4](https://github.com/yasio/DemoUE4): Unreal Engine 4 Integration Demo.
+    * [ftp_server](https://github.com/yasio/ftp_server): 基于yasio实现的仅支持下载的ftp服务器，[点击](ftp://ftp.yasio.org/) 访问。
+    * [lua](https://github.com/yasio/yasio/tree/master/examples/lua): lua样例程序，包含并发http请求，TCP拆包实例代码
+    * [xlua](https://github.com/yasio/xLua): xlua集成案例
+    * [DemoUE4](https://github.com/yasio/DemoUE4): UE4集成案例
 
 ## Build tests & examples
-* Ensure install compiler which support C++11, such as ``msvc``, ``gcc``, ``clang``
-* Ensure ``git``, ``cmake`` installed
-* Execude follow commands:
+* 确保已安装支持C++11标准的编译器，例如 ``msvc``, ``gcc``, ``clang``
+* 确保已安装 ``git``, ``cmake`` installed
+* 运行如下命令:
 
 ```sh
   git clone https://github.com/yasio/yasio
