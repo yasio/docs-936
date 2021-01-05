@@ -44,10 +44,11 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-
 plugins:
   - search
   - git-revision-date-localized
   - pdf-export:
-    verbose: false
-    media_type: print
+      verbose: false
+      media_type: print
+      combined: true
+      combined_output_path: pdf/yasio-latest.pdf
