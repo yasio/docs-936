@@ -44,10 +44,10 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-  
-  plugins:
-    - search
-    - git-revision-date-localized
-    - pdf-export:
-      verbose: false
-      media_type: print
+
+plugins:
+  - search
+  - git-revision-date-localized
+  - pdf-export:
+    verbose: false
+    media_type: print
