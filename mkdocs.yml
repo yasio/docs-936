@@ -1,5 +1,5 @@
 docs_dir: docs
-site_name: yasio 官方中文文档
+site_name: yasio 中文文档
 repo_url: https://github.com/yasio/docs-936
 repo_name: GitHub
 edit_uri: edit/master/docs
@@ -44,3 +44,10 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+  
+  plugins:
+    - search
+    - git-revision-date-localized
+    - pdf-export:
+      verbose: false
+      media_type: print
