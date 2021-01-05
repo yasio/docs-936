@@ -1,0 +1,46 @@
+docs_dir: docs
+site_name: yasio Documentation
+repo_url: https://github.com/yasio/docs-936
+repo_name: GitHub
+edit_uri: edit/master/docs
+copyright: Copyright &copy; 2012 - 2021 yasio.org.
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - API References: api/index.md
+  - FAQ: faq.md
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: yasio
+      repo: docs-936
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
