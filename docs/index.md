@@ -113,9 +113,9 @@ yasio 是一个轻量级跨平台的异步socket库，专注于客户端和基�
     _G.yservice = service -- Store service to global table as a singleton instance
     ```
 
-## The [tests](https://github.com/yasio/yasio/tree/master/tests) & [examples](https://github.com/yasio/yasio/tree/master/tests):
+## [测试](https://github.com/yasio/yasio/tree/master/tests) & [示例](https://github.com/yasio/yasio/tree/master/tests):
 
-* tests:
+* 测试:
     * [echo_server](https://github.com/yasio/yasio/tree/master/tests/echo_server): TCP/UDP/KCP 回射服务器
     * [echo_client](https://github.com/yasio/yasio/tree/master/tests/echo_client): TCP/UDP/KCP 回射客户端
     * [ssltest](https://github.com/yasio/yasio/tree/master/tests/ssl): SSL测试客户端, 请求github.com主页并打印返回数据
@@ -123,13 +123,13 @@ yasio 是一个轻量级跨平台的异步socket库，专注于客户端和基�
     * [speedtest](https://github.com/yasio/yasio/tree/master/tests/speed): TCP,UDP,KCP 本机传输速率测试程序
     * [mcast](https://github.com/yasio/yasio/tree/master/tests/mcast): 组播测试程序
 
-* examples:
+* 示例:
     * [ftp_server](https://github.com/yasio/ftp_server): 基于yasio实现的仅支持下载的ftp服务器，[点击](ftp://ftp.yasio.org/) 访问。
     * [lua](https://github.com/yasio/yasio/tree/master/examples/lua): lua样例程序，包含并发http请求，TCP拆包实例代码
     * [xlua](https://github.com/yasio/xLua): xlua集成案例
     * [DemoUE4](https://github.com/yasio/DemoUE4): UE4集成案例
 
-## Build tests & examples
+## 编译 测试 & 示例
 * 确保已安装支持C++11标准的编译器，例如 ``msvc``, ``gcc``, ``clang``
 * 确保已安装 ``git``, ``cmake`` installed
 * 运行如下命令:
@@ -144,6 +144,6 @@ yasio 是一个轻量级跨平台的异步socket库，专注于客户端和基�
   cmake --build . --config Debug
 ```
 
-## API documentation
+## API 文档
 * [API References](api/index.md)
 * [FAQ](faq.md)
