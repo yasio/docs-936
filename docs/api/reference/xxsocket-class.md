@@ -59,7 +59,6 @@ namespace yasio { namespace inet { class xxsocket; } }
 |[xxsocket::reuse_address](#reuse_address)|设置socket是否重用地址|
 |[xxsocket::exclusive_address](#exclusive_address)|设置socket是否阻止地址重用|
 |[xxsocket::select](#select)|监听socket事件|
-|[xxsocket::alive](#alive)|检查socket是否处于正常状态|
 |[xxsocket::shutdown](#shutdown)|停止socket收发|
 |[xxsocket:close](#close)|关闭socket|
 |[xxsocket:tcp_rtt](#tcp_rtt)|获取tcp rtt.|
