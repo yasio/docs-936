@@ -6,7 +6,7 @@ helpviewer_keywords: []
 ---
 # obstream Class
 
-Provides the functionality of Binary Writer.
+提供二进制序列化功能。
 
 ## Syntax
 
@@ -14,20 +14,20 @@ Provides the functionality of Binary Writer.
 namespace yasio { 
 using obstream = basic_obstream<endian::network_convert_tag>;
 
-// The fast binary writer without byte order convertion.
+// 序列化过程，无字节序转换，性能更快
 using fast_obstream = basic_obstream<endian::host_convert_tag>;
 }
 ```
 
-## Members
+## 成员
 
-### Public Constructors
+### 公共构造函数
 
 |Name|Description|
 |----------|-----------------|
 |[obstream::obstream](#obstream)|Constructs a `obstream` object.|
 
-### Public Methods
+### 公共方法
 
 |Name|Description|
 |----------|-----------------|
@@ -42,9 +42,11 @@ using fast_obstream = basic_obstream<endian::host_convert_tag>;
 |[obstream::buffer](#buffer)|Retrieves the buffer object of the stream.|
 |[obstream::save](#save)|Save the stream binary data to file.|
 
-## Remarks
+## 注意
 
-When write int16~int64 and float/double, will auto convert host byte order to network byte order.
+`obstream` 当写入int16~int64和float/double类型是, 会自动将主机字节序转换问网络字节序 <br/>
+
+`fast_obstream` 不会转换任何字节序
 
 ## Requirements
 
@@ -52,7 +54,7 @@ When write int16~int64 and float/double, will auto convert host byte order to ne
 
 ## <a name="obstream"></a> obstream::obstream
 
-Constructs a `obstream` object.
+构造 `obstream` 对象.
 
 ```cpp
 obstream(size_t capacity = 128);
@@ -62,103 +64,88 @@ obstream(const obstream& rhs);
 obstream(obstream&& rhs);
 ```
 
-### Example
-
-TODO:
-
 ## <a name="write"></a> obstream::write
 
-Write number value to stream with byte order convertion.
+写入数值类型
 
 ```cpp
 template<typename _Nty>
 void obstream::write(_Nty value);
 ```
 
-### Parameters
+### 参数
 
 *value*<br/>
-The value to be written.
+要写入的值
 
-### Remarks
-The type *_Nty* of value could be any (1~8bytes) integral or float types 
-
-### Example
-
-TODO:
+### 注意
+*_Nty* 实际类型可以是任意1~8字节整数类型或浮点类型。
 
 ## <a name="write_ix"></a> obstream::write_ix
 
-Write 7Bit Encoded Int compressed value.
+将32/64位整数值以7Bit Encoded Int方式压缩后写入流。
 
 ```cpp
 template<typename _Intty>
 void obstream::write_ix(_Intty value);
 ```
 
-### Parameters
+### 参数
 
 *value*<br/>
-The value to be written.
+要写入的值。
 
-### Remarks
-The type *_Intty* of value must be one of follows
+### 注意
+
+*_Intty* 类型只能是如下类型
 
 - int32_t
 - int64_t
 
-This function behavior is compatible with dotnet
+此函数压缩编码方式兼容微软dotnet如下函数
 
 - [BinaryWriter.Write7BitEncodedInt](https://docs.microsoft.com/en-us/dotnet/api/system.io.binarywriter.write7bitencodedint?view=net-5.0#System_IO_BinaryWriter_Write7BitEncodedInt_System_Int32_)
 - [BinaryWriter.Write7BitEncodedInt64](https://docs.microsoft.com/en-us/dotnet/api/system.io.binarywriter.write7bitencodedint64?view=net-5.0#System_IO_BinaryWriter_Write7BitEncodedInt64_System_Int64_)
 
-### Example
-
-TODO:
 
 ## <a name="write_v"></a> obstream::write_v
 
-Write blob data with 7Bit Encoded Int length field.
+写入二进制数据，包含长度字段(7Bit Encoded Int).
 
 ```cpp
 void write_v(cxx17::string_view sv);
 ```
 
-### Parameters
+### 参数
 
 *sv*<br/>
-The string_view value to be written.
+要写入的数据.
 
-### Remarks
-This function will write length field with 7Bit Encoded first, then call [write_bytes](#write_bytes) to write the value.
+### 注意
 
-### Example
+此函数先以7Bit Encoded编码方式写入数据长度, 再调用 [write_bytes](#write_bytes) 写入字节数据.
 
-TODO:
 
 ## <a name="write_byte"></a> obstream::write_byte
 
-Write 1 byte to stream.
+写入1个字节。
 
 ```cpp
 void write_byte(uint8_t value);
 ```
 
-### Parameters
+### 参数
 
 *value*<br/>
-The value to be written.
+要写入的值
 
 ### Remarks
-This function is identical to [obstream::write<uint8_t>](#write)
+此函数功能等价于 [obstream::write<uint8_t>](#write)
 
-### Example
-
-TODO:
 
 ## <a name="write_bytes"></a> obstream::write_bytes
 
-Write byte array to stream.
+写入字节数组。
 
 ```cpp
 void write_bytes(cxx17::string_view sv);
@@ -171,47 +158,41 @@ void write_bytes(std::streamoff offset, const void* data, int length);
 ### Parameters
 
 *sv*<br/>
-The string_view value to be written.
+写入string_view包装的字节数组.
 
 *data*<br/>
-The data to be written.
+要写入字节数组的首地址.
 
 *length*<br/>
-The length data to be written.
+要写入字节数组的长度.
 
 *offset*<br/>
-The offset of stream to be written.
+要写入字节数组的目标偏移.
 
-### Remarks
-The value of `offset + length` must be less than [`obstream::length`](#length)
+### 注意
 
-### Example
-
-TODO:
+`offset + length` 的值必须小于 [`obstream::length`](#length)
 
 ## <a name="empty"></a> obstream::empty
 
-Tests whether the obstream is empty.
+判断流是否为空
 
 ```cpp
 bool empty() const;
 ```
 
-### Return Value
+### 返回值
 
-`true` if the obstream empty; `false` if it has at least one byte.
+`true` 空; `false` 非空.
 
-### Remarks
+### 注意
 
-The member function is equivalent to [length](#length) == 0.
+此函数等价于 [length](#length) == 0.
 
-### Example
-
-TODO:
 
 ## <a name="data"></a> obstream::data
 
-Retrieves stream data pointer.
+获取数据指针。
 
 ```cpp
 const char* data() const;
@@ -219,33 +200,25 @@ const char* data() const;
 char* data();
 ```
 
-### Return Value
+### 返回值
 
-A pointer to the first byte in the stream.
-
-### Example
-
-TODO:
+字节流数据首地址。
 
 ## <a name="length"></a> obstream::length
 
-Returns the number of bytes in the stream.
+获取流长度。
 
 ```cpp
 size_t length() const;
 ```
 
-### Return Value
+### 返回值
 
-The current length of the stream.
-
-### Example
-
-TODO:
+返回流中包含的总字节数。
 
 ## <a name="buffer"></a> obstream::buffer
 
-Retrieves internal buffer of stream.
+获取流内部缓冲区。
 
 ```cpp
 const std::vector<char>& buffer() const;
@@ -253,11 +226,11 @@ const std::vector<char>& buffer() const;
 std::vector<char>& buffer();
 ```
 
-### Return Value
+### 返回值
 
-The internal implementation buffer of the stream.
+流内部缓冲区引用，可以使用 `std::move` 取走。
 
-### Example
+### 示例
 
 ```cpp
 // obstream_buffer.cpp
@@ -283,13 +256,13 @@ int main( )
 
 ## <a name="save"></a> obstream::save
 
-Save the stream data to file.
+将流中的二进制字节数据保存到文件。
 
 ```cpp
 void save(const char* filename) const;
 ```
 
-### Example
+### 示例
 
 ```cpp
 // obstream_save.cpp
@@ -322,7 +295,7 @@ int main( )
 }
 ```
 
-## See also
+## 请参阅
 
 [ibstream_view Class](./ibstream-class.md)
 

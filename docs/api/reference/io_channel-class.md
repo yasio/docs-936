@@ -7,32 +7,34 @@ helpviewer_keywords: []
 
 # io_channel Class
 
-Provides the functionality of establishing tcp/udp/kcp connections.
+负责建立 tcp/udp/kcp 连接并创建transport.
 
 
-## Syntax
+## 语法
 
 ```cpp
 namespace yasio { namespace inet { class io_channel; } }
 ```
 
-### Public Methods
+## 成员
+
+### 公共方法
 
 |Name|Description|
 |----------|-----------------|
-|[io_channel::get_service](#get_service)|Gets belong service of channel.|
-|[io_channel::index](#index)|Gets index of channel at service.|
-|[io_channel::remote_port](#remote_port)|Gets remote port of channel.|
+|[io_channel::get_service](#get_service)|获取管理信道的io_service.|
+|[io_channel::index](#index)|获取信道索引.|
+|[io_channel::remote_port](#remote_port)|获取信道远程端口.|
 
-## Remarks
+## 注意
 
-Once io_service initialized, the max count of channel can't be changed. <br/>
-Retrieves through io_service::cindex_to_handle.
+当io_service对象构造后，最大信道数量不可改变. <br/>
+信道句柄可通过 ``io_service::cindex_to_handle`` 获取.
 
 
 ## <a name="get_service"></a> io_channel::get_service
 
-Gets owner service.
+获取管理信道的io_service对象。
 
 ```cpp
 io_service& get_service()
@@ -40,7 +42,7 @@ io_service& get_service()
 
 ## <a name="index"></a> io_channel::index
 
-Gets channel index at service.
+获取信道索引。
 
 ```cpp
 int index() const
@@ -48,20 +50,20 @@ int index() const
 
 ## <a name="remote_port"></a> io_channel::remote_port
 
-Gets remote port.
+获取信道远程端口.
 
 ```cpp
 u_short remote_port() const;
 ```
 
-### Return value
+### 返回值
 
-Return remote port of channel
+返回信道远程端口号
 
-- For client channel, it's port to connect.  
-- For server channel, it's port to listen.
+- 对于客户端信道表示通信的远端端口 
+- 对于服务端信道表示监听端口
 
-## See also
+## 请参阅
 
 [io_service Class](./io_service-class.md)
 
