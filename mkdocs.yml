@@ -6,6 +6,7 @@ edit_uri: edit/master/docs
 copyright: Copyright &copy; 2012 - 2021 yasio.org.
 theme:
   name: material
+  language: zh
 nav:
   - Home: index.md
   - API References: api/index.md
@@ -46,6 +47,7 @@ markdown_extensions:
   - pymdownx.tilde
 plugins:
   - search
+      language: jp
   - pdf-export:
       verbose: false
       media_type: print
