@@ -46,7 +46,7 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 plugins:
-  - search
+  - search:
       language: jp
   - pdf-export:
       verbose: false
