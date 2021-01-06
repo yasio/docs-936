@@ -16,7 +16,7 @@ nav:
     - obstream Class: api/reference/obstream-class.md
     - ibstream Class: api/reference/ibstream-class.md
     - xxsocket Class: api/reference/xxsocket-class.md
-    - io_service Options: api/reference/io_service-Options.md
+    - io_service Options: api/reference/io_service-options.md
   - 预处理器: preprocessor.md
   - 常见问题: faq.md
 markdown_extensions: 
@@ -63,4 +63,4 @@ plugins:
   - minify:
       minify_html: true
 extra_css:
-  - '/assets/stylesheets/extra.css'
+  - 'assets/stylesheets/extra.css'
