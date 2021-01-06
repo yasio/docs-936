@@ -30,6 +30,10 @@
 ??? question "xxsocket 函数命名后缀_n和_i的意思？"
 
     _n是nonblock的意思，_i是internal(新版本已去除)。
+    
+??? question "设置了YOPT_TCP_KEEPALIVE，还需要应用层心跳吗？"
+
+    一般不需要，除非需要检测网络延时展示给用户，详见: https://github.com/yasio/yasio/issues/117
 
 ??? question "Lua绑定闪退"
 
