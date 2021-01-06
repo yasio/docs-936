@@ -6,23 +6,23 @@ helpviewer_keywords: []
 ---
 # io_service Class
 
-Provides the functionality of `tcp, udp, kcp and ssl-client`  communication with noblocking-io model.
+实现 `tcp, udp, kcp and ssl-client` 非阻塞通信模型.
 
-## Syntax
+## 语法
 
 ```cpp
 namespace yasio { namespace inet { class io_service; } }
 ```
 
-## Members
+## 成员
 
-### Public Constructors
+### 公共构造函数
 
 |Name|Description|
 |----------|-----------------|
 |[io_service::io_service](#io_service)|Constructs a `io_service` object.|
 
-### Public Methods
+### 公共方法
 
 |Name|Description|
 |----------|-----------------|
@@ -40,17 +40,17 @@ namespace yasio { namespace inet { class io_service; } }
 |[io_service::channel_at](#channel_at)|Retrieves the channel by index.|
 |[io_service::set_option](#set_option)|Set options.|
 
-## Remarks
+## 注意
 
-By default, the transport use object_pool.
+默认transport的创建会使用对象池 `object_pool`。
 
-## Requirements
+## 要求
 
-**Header:** yasio.hpp
+**头文件:** yasio.hpp
 
 ## <a name="io_service"></a> io_service::io_service
 
-Constructs a `io_service` object.
+构造 `io_service` 对象。
 
 ```cpp
 io_service::io_service();
@@ -62,18 +62,18 @@ io_service::io_service(const io_hostent& channel_ep);
 io_service::io_service(const io_hostent* channel_eps, int channel_count);
 ```
 
-### Parameters
+### 参数
 
 *channel_count*<br/>
-The channel count.
+信道数量。
 
 *channel_ep*<br/>
-The channel endpoint.
+信道远端地址。
 
 *channel_eps*<br/>
-The first pointer of channel endpoints.
+信道远端地址数组首地址。
 
-### Example
+### 示例
 
 ```cpp
 #include "yasio/yasio.hpp"
@@ -94,7 +94,7 @@ int main() {
 
 ## <a name="start"></a> io_service::start
 
-Start the network service thread.
+启动网络服务线程。
 
 ```cpp
 void start(io_event_cb_t cb);
@@ -103,9 +103,9 @@ void start(io_event_cb_t cb);
 ### Parameters
 
 *cb*<br/>
-The callback to receive network io events.
+网络事件回调，默认情况下在 [io_service::dispatch] 调用者线程调度。
 
-### Example
+### 示例
 
 ```cpp
 #include "yasio/yasio.hpp"
@@ -129,22 +129,19 @@ int main() {
 
 ## <a name="stop"></a> io_service::stop
 
-Stop network service thread.
+停止网络服务线程。
 
 ```cpp
 void stop()
 ```
 
-### Remarks
-If the network service thread running, this function will post exit signal and wait it exit properly.
+### 注意
 
-### Example
-
-TODO:
+如果网络服务线程正在运行, 此函数会发送退出信号并等待其正常退出。
 
 ## <a name="open"></a> io_service::open
 
-Open a channel.
+打开信道。
 
 ```cpp
 void open(size_t cindex, int kind);
@@ -153,18 +150,18 @@ void open(size_t cindex, int kind);
 ### Parameters
 
 *cindex*<br/>
-The index of channel.
+信道索引。
 
 *kind*<br/>
-The kind of channel.
+信道类型。
 
-### Remarks
+### 注意
 
-For tcp, will start a non-blocking 3 times handshake to establish tcp connection.
+对于tcp, 将会请求内核发起非阻塞3次握手来建立tcp可靠连接。
 
-The *cindex* value must be less than max channels supported by this io_service.
+*cindex* 的值必须小于io_service初始化时的信道数量。
 
-The *kind* must be follow values
+*kind* 必须是以下枚举值之一:
 
 - `YCK_TCP_CLIENT`
 - `YCK_TCP_SERVER`
@@ -174,13 +171,10 @@ The *kind* must be follow values
 - `YCK_KCP_SERVER`
 - `YCK_SSL_CLIENT`
 
-### Example
-
-TODO:
 
 ## <a name="close"></a> io_service::close
 
-Close the channel or transport.
+关闭信道或者传输会话。
 
 ```cpp
 void close(transport_handle_t transport);
@@ -191,21 +185,18 @@ void close(int cindex);
 ### Parameters
 
 *transport*<br/>
-The transport to be close.
+将要关闭的传输会话。
 
 *cindex*<br/>
-The channel index to be close.
+将要关闭的信道。
 
-### Remarks
-For tcp, will trigger 4 times handsake to terminate the connection.
+### 注意
 
-### Example
-
-TODO:
+对于tcp， 将会出发tcp的4次握手来终止连接。
 
 ## <a name="is_open"></a> io_service::is_open
 
-Tests whether the transport or channel is open.
+判断信道或传输会话是否处于打开状态。
 
 ```cpp
 bool is_open(transport_handle_t transport) const;
@@ -213,38 +204,38 @@ bool is_open(transport_handle_t transport) const;
 bool is_open(int cindex) const;
 ```
 
-### Parameters
+### 参数
 
 *transport*<br/>
-The transport to be tests.
+传输会话句柄。
 
 *cindex*<br/>
-The index of channel to be tests.
+信道索引。
 
-### Example
 
-TODO:
+### 返回值
+`true`: 打开，`false`: 未打开
 
 ## <a name="dispatch"></a> io_service::dispatch
 
-Consume network events queue and dispatch them.
+分派网络线程产生的事件。
 
 ```cpp
 void dispatch(int max_count);
 ```
 
-### Parameters
+### 参数
 
 *max_count*<br/>
-The max count allow to dispatch at this time.
+本次最大分配事件数。
 
-### Remarks
+### 注意
 
-Usually, this function should call at logic thread, such as cocos2d-x render thread or other game engine main thread.
+通常此方法应当在关心网络事件的业务逻辑线程调用, 例如Cocos2d-x的渲染线程，以及其他引擎的主逻辑线程。
 
-It's useful to update game ui safety.
+此方法对于安全地更新游戏界面非常有用。
 
-### Example
+### 示例
 
 ```cpp
 yasio_shared_service()->dispatch(128);
@@ -252,7 +243,7 @@ yasio_shared_service()->dispatch(128);
 
 ## <a name="write"></a> io_service::write
 
-Sends data asynchronous.
+向传输会话远端发送数据。
 
 ```cpp
 int write(
@@ -262,34 +253,30 @@ int write(
 );
 ```
 
-### Parameters
+### 参数
 
 *thandle*<br/>
-The transport handle to send.
+传输会话句柄。
 
 *buffer*<br/>
-The send buffer.
+要发送的二进制缓冲区。
 
 *completion_handler*<br/>
-The completion handler for send operation.
+发送完成回调。
 
-### Return Value
+### 返回值
 
-A number of bytes to sends, error occured when < 0.
+返回发送数据字节数, `< 0`: 说明发生错误。
 
-### Remarks
+### 注意
 
-The *completion_handler* not support KCP.
+*completion_handler* 不支持 `KCP`。
 
-The empty buffer will be ignored and not trigger completion_handler.
-
-### Example
-
-TODO:
+空buffer会直接被忽略，也不会触发 *completion_handler* 。
 
 ## <a name="write_to"></a> io_service::write_to
 
-Sends data asynchronous.
+向UDP传输会话发送数据。
 
 ```cpp
 int write_to(
@@ -300,31 +287,31 @@ int write_to(
 );
 ```
 
-### Parameters
+### 参数
 
 *thandle*<br/>
-The transport handle to send.
+传输会话句柄。
 
 *buffer*<br/>
-The send buffer.
+要发送的buffer。
 
 *to*<br/>
-The remote endpoint for send operation.
+要发送的远端地址。
 
 *completion_handler*<br/>
-The completion handler for send operation.
+发送完成回调。
 
-### Return Value
+### 返回值
 
-A number of bytes to be send, error occured when < 0.
+成功发送的字节数, 当 `< 0` 时说明发生错误，通常是传输会话已关闭(TCP连接断开等)。
 
-### Remarks
+### 注意
 
-This function only works for *DGRAM* transport `udp,kcp`
+此函数仅可用于 *DGRAM* 传输会话，即 `udp,kcp`。
 
-The *completion_handler* not support KCP.
+发送完成回调 *completion_handler* 不支持 `KCP`。
 
-The empty buffer will be ignored and not trigger completion_handler.
+空buffer会直接被忽略，也不会触发 *completion_handler* 。
 
 ### Example
 
@@ -332,7 +319,7 @@ TODO:
 
 ## <a name="schedule"></a> io_service::schedule
 
-Schedule a timer which will dispatch on the network service thread.
+注册一个定时器。
 
 ```cpp
 highp_timer_ptr schedule(
@@ -341,19 +328,19 @@ highp_timer_ptr schedule(
 );
 ```
 
-### Parameters
+### 参数
 
 *duration*<br/>
-The timer expire duration.
+定时器超时时间，毫秒级。
 
 *cb*<br/>
-The callback to execute when the timer is expired.
+当定时器到期后回调。
 
-### Return Value
+### 返回值
 
-The shared_ptr of the high resolution timer.
+`std::shared_ptr` 包装的定时器对象，以便用户对定时器安全地进行必要操作。
 
-### Example
+### 示例
 
 ```cpp
 // Register a once timer, timeout is 3 seconds.
@@ -371,22 +358,22 @@ auto loopTimer = yasio_shared_service()->schedule(std::chrono::seconds(5), []()-
 
 ## <a name="init_globals"></a> io_service::init_globals
 
-Explicit init global data with print function callback.
+静态方法，显示地初始化全局数据
 
 ```cpp
 static void init_globals(print_fn2_t print_fn);
 ```
 
-### Parameters
+### 参数
 
 *print_fn*<br/>
-The custom print function to print network service log.
+自定义网络日志打印函数。
 
-### Remarks
+### 注意
 
-This function is optional, it's useful to redirect network service log to your custom log system, such as ue4,u3d, see the example.
+此函数是可选调用，但是当用户需要将 `io_service` 的关键网络日志重定向到自定义日志系统是，则非常有用，例如重定向到UE4和U3D的日志输出。
 
-### Example
+### 示例
 
 ```cpp
 // yasio_uelua.cpp
@@ -422,47 +409,47 @@ void yasio_uelua_cleanup()
 
 ## <a name="cleanup_globals"></a> io_service::cleanup_globals
 
-Clear custom print function object.
+静态方法，显示地清理全局数据。
 
 ```cpp
 static void cleanup_globals();
 ```
 
-### Remarks
+### 注意
 
-You should call this function before unload a module(.dll,.so) which contains custom print function object.
+当用户需要卸载包含自定义日志打印回调的动态库(.dll,.so)前则必须调用此函数，谨防应用程序闪退。
 
 ## <a name="channel_at"></a> io_service::channel_at
 
-Retrieves channel by index.
+通过信道索引获取信道句柄。
 
 ```cpp
 io_channel* channel_at(size_t cindex) const;
 ```
 
-### Parameters
+### 参数
 
 *cindex*<br/>
-The index of channel.
+信道索引
 
-### Return value
+### 返回值
 
-The channel pointer, will be `nullptr` if the index out-of-range.
+信道句柄指针, 当索引值超出范围时，返回 `nullptr`。
 
 ## <a name="set_option"></a> io_service::set_option
 
-Set current io_service option.
+设置选项。
 
 ```cpp
 void set_option(int opt, ...);
 ```
 
-### Parameters
+### 参数
 
 *opt*<br/>
-The opt value, see [YOPT_X_XXX](io_service-options.md).
+选项枚举, 请查看 [YOPT_X_XXX](io_service-options.md).
 
-### Example
+### 示例
 
 ```cpp
 #include "yasio/yasio.hpp"
@@ -501,7 +488,7 @@ int main(){
 }
 ```
 
-## See also
+## 请参阅
 
 [io_event Class](./io_event-class.md)
 
