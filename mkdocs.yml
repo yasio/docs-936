@@ -10,13 +10,13 @@ theme:
 nav:
   - 主页: index.md
   - API 参考:
-    - io_service Class: api/reference/io_service-class.md
-    - io_channel Class: api/reference/io_channel-class.md
-    - io_event Class: api/reference/io_event-class.md
-    - obstream Class: api/reference/obstream-class.md
-    - ibstream Class: api/reference/ibstream-class.md
-    - xxsocket Class: api/reference/xxsocket-class.md
-    - io_service Options: api/reference/io_service-options.md
+    - io_service类: api/reference/io_service-class.md
+    - io_channel类: api/reference/io_channel-class.md
+    - io_event类: api/reference/io_event-class.md
+    - obstream类: api/reference/obstream-class.md
+    - ibstream类: api/reference/ibstream-class.md
+    - xxsocket类: api/reference/xxsocket-class.md
+    - io_service选项: api/reference/io_service-options.md
   - 预处理器: preprocessor.md
   - 常见问题: faq.md
 markdown_extensions: 
