@@ -6,7 +6,7 @@ date: 12/17/2020
 
 # io_service options
 
-The following are the io_service options.
+io_service支持的所有选项。
 
 |Name|Description|
 |----------|-----------------|
@@ -41,6 +41,6 @@ The following are the io_service options.
 |*YOPT_T_DISCONNECT*|Dissolve 4-tuple association for io_transport_udp.<br/>params: transport:transport_handle_t<br/>remark: only works for udp client transport|
 |*YOPT_B_SOCKOPT*|Sets io_base sockopt.<br/>params: io_base*,level:int,optname:int,optval:int,optlen:int|
 
-## See also
+## 请参阅
 
 [io_service Class](./io_service-class.md)
