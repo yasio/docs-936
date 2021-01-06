@@ -48,9 +48,9 @@ namespace yasio { namespace inet { class xxsocket; } }
 |[xxsocket::send](#send)|发送数据|
 |[xxsocket::send_n](#send_n)|非阻塞方式发送数据|
 |[xxsocket::recv](#recv)|接受数据|
-|[xxsocket:recv_n](#recv_n)|非阻塞方式接受数据|
-|[xxsocket:sendto](#sendto)|发送DGRAM数据到指定地址|
-|[xxsocket:recvfrom](#recvfrom)|接受DGRAM数据|
+|[xxsocket::recv_n](#recv_n)|非阻塞方式接受数据|
+|[xxsocket::sendto](#sendto)|发送DGRAM数据到指定地址|
+|[xxsocket::recvfrom](#recvfrom)|接受DGRAM数据|
 |[xxsocket::handle_write_ready](#handle_write_ready)|等待socket可写|
 |[xxsocket::handle_read_ready](#handle_read_ready)|等待socket可读|
 |[xxsocket::local_endpoint](#local_endpoint)|获取socket本地地址|
@@ -60,10 +60,10 @@ namespace yasio { namespace inet { class xxsocket; } }
 |[xxsocket::exclusive_address](#exclusive_address)|设置socket是否阻止地址重用|
 |[xxsocket::select](#select)|监听socket事件|
 |[xxsocket::shutdown](#shutdown)|停止socket收发|
-|[xxsocket:close](#close)|关闭socket|
-|[xxsocket:tcp_rtt](#tcp_rtt)|获取tcp rtt.|
-|[xxsocket:get_last_errno](#get_last_errno)|获取最近socket错误码|
-|[xxsocket:set_last_errno](#set_last_errno)|设置最近socket错误码|
+|[xxsocket::close](#close)|关闭socket|
+|[xxsocket::tcp_rtt](#tcp_rtt)|获取tcp rtt.|
+|[xxsocket::get_last_errno](#get_last_errno)|获取最近socket错误码|
+|[xxsocket::set_last_errno](#set_last_errno)|设置最近socket错误码|
 |[xxsocket::strerror](#strerror)|将socket错误码转换为字符串|
 |[xxsocket::gai_strerror](#gai_strerror)|将getaddrinfo返回值转换为字符串|
 |[xxsocket::resolve](#resolve)|解析域名|
