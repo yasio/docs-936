@@ -8,10 +8,11 @@ helpviewer_keywords: []
 
 提供二进制序列化功能。
 
-## Syntax
+## 语法
 
 ```cpp
 namespace yasio { 
+// 序列化过程，会自动转换字节序，适用于网络传输
 using obstream = basic_obstream<endian::network_convert_tag>;
 
 // 序列化过程，无字节序转换，性能更快
@@ -48,9 +49,9 @@ using fast_obstream = basic_obstream<endian::host_convert_tag>;
 
 `fast_obstream` 不会转换任何字节序
 
-## Requirements
+## 要求
 
-**Header:** obstream.hpp
+**头文件:** obstream.hpp
 
 ## <a name="obstream"></a> obstream::obstream
 
@@ -79,6 +80,7 @@ void obstream::write(_Nty value);
 要写入的值
 
 ### 注意
+
 *_Nty* 实际类型可以是任意1~8字节整数类型或浮点类型。
 
 ## <a name="write_ix"></a> obstream::write_ix
