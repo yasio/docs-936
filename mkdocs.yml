@@ -9,7 +9,7 @@ theme:
   language: zh
 nav:
   - 主页: index.md
-  - API 参考: api/index.md
+  - API 参考:
     - io_service Class: api/reference/io_service-class.md
     - io_channel Class: api/reference/io_channel-class.md
     - io_event Class: api/reference/io_event-class.md

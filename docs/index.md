@@ -143,7 +143,3 @@ yasio 是一个轻量级跨平台的异步socket库，专注于客户端和基�
   cmake ..
   cmake --build . --config Debug
 ```
-
-## API 文档
-* [API References](api/index.md)
-* [FAQ](faq.md)
