@@ -7,7 +7,7 @@ helpviewer_keywords: []
 
 # xxsocket Class
 
-封装底层bsd socket常用API以及socket句柄管理。
+封装底层bsd socket常用API，屏蔽各操作系统平台差异。
 
 ## 语法
 
