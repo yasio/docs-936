@@ -53,3 +53,7 @@ plugins:
       media_type: print
       combined: true
       combined_output_path: pdf/yasio-latest.pdf
+  - minify:
+      minify_html: true
+extra_css:
+  - 'res/css/extra.css'

@@ -7,3 +7,4 @@ cffi
 pytest-runner
 WeasyPrint
 mkdocs-pdf-export-plugin
+mkdocs-minify-plugin
