@@ -462,11 +462,6 @@ int listen(int backlog = SOMAXCONN) const;
 xxsocket accept() const;
 ```
 
-### 参数
-
-*addrlen*<br/>
-此参数被忽略，将来版本会移除。
-
 ### 返回值
 
 和客户端通信的 `xxsocket` 对象。
@@ -732,6 +727,284 @@ int recvfrom(void* buf, int len, endpoint& peer, int flags = 0) const;
 ### 注意
 
 此函数是否立即返回，取决于socket本身是否是 `非阻塞模式`。
+
+
+## <a name="handle_write_ready"></a> xxsocket::handle_write_ready
+
+等待socket可写。
+
+```cpp
+int handle_write_ready(const std::chrono::microseconds& wtimeout) const;
+```
+
+### 参数
+
+*wtimeout*<br/>
+等待超时时间。
+
+
+### 返回值
+
+`0`: 超时， `1`: 成功， `< 0`: 失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+### 注意
+
+通常当内核发送缓冲区没满的情况下，此函数会立即返回。
+
+## <a name="handle_read_ready"></a> xxsocket::handle_read_ready
+
+等待socket可读。
+
+```cpp
+int handle_read_ready(const std::chrono::microseconds& wtimeout) const;
+```
+
+### 参数
+
+*wtimeout*<br/>
+等待超时时间。
+
+
+### 返回值
+
+`0`: 超时， `1`: 成功， `< 0`: 失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+
+## <a name="local_endpoint"></a> xxsocket::local_endpoint
+
+获取4元组通信的本地地址。
+
+```cpp
+endpoint local_endpoint() const;
+```
+
+### 返回值
+
+返回本地地址。
+
+### 注意
+
+如果没有调用过 `xxsocket::connect` 或者TCP连接3次握手未完成，那么返回的地址是 `0.0.0.0`
+
+## <a name="peer_endpoint"></a> xxsocket::peer_endpoint
+
+获取4元组通信的对端地址。
+
+```cpp
+endpoint peer_endpoint() const;
+```
+
+### 返回值
+
+返回本地地址。
+
+### 注意
+
+如果没有调用过 `xxsocket::connect` 或者TCP连接3次握手未完成，那么返回的地址是 `0.0.0.0`
+
+## <a name="set_keepalive"></a> xxsocket::set_keepalive
+
+设置TCP底层协议的心跳参数。
+
+```cpp
+int set_keepalive(int flag = 1, int idle = 7200, int interval = 75, int probes = 10);
+```
+
+### 参数
+
+*flag*<br/>
+`1`: 开启底层协议心跳，`0`: 关闭。
+
+*idle*<br/>
+当应用层没有任何消息交互后，启动底层协议心跳探测的最大超时时间，单位（秒）。
+
+*interval*<br/>
+当没有收到心跳回应时，重复发送心跳探测报时间间隔，单位（秒）。
+
+*probes*<br/>
+当没有收到心跳回应时，最大探测次数，超过探测次数后，会触发应用层连接断开。
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+### 示例
+
+```cpp
+// xxsocket-keepalive.cpp
+#include "yasio/xxsocket.hpp"
+using namespace yasio;
+using namespace inet;
+
+int main(){
+    xxsocket client;
+    if(0 == client.pconnect("192.168.1.19", 80)) {
+        client.set_keepalive(1, 5, 10, 2);
+    }
+    return 0;
+}
+
+```
+
+## <a name="reuse_address"></a> xxsocket::reuse_address
+
+设置socket是否允许重用地址。
+
+```cpp
+void reuse_address(bool reuse);
+```
+
+### 参数
+
+*reuse*<br/>
+是否重用。
+
+### 注意
+
+此函数一般用于服务器或者组播监听端口。
+
+
+## <a name="exclusive_address"></a> xxsocket::exclusive_address
+
+是否明确不允许地址重用，以保护通信双方安全。
+
+```cpp
+void exclusive_address(bool exclusive);
+```
+
+### 参数
+
+*exclusive*<br/>
+`true`: 不允许，`false`: 允许
+
+### 注意
+
+[点击](https://docs.microsoft.com/en-us/windows/win32/winsock/using-so-reuseaddr-and-so-exclusiveaddruse) 查看 `winsock` 安全报告。
+
+## <a name="set_optval"></a> xxsocket::set_optval
+
+设置socket选项。
+
+```cpp
+template <typename _Ty> int set_optval(int level, int optname, const _Ty& optval);
+```
+
+### 参数
+
+*level*<br/>
+socket选项级别。
+
+*optname*<br/>
+选项类型。
+
+*optval*<br/>
+选项值。
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+### 注意
+
+此函数同bsd socket `setsockopt`功能相同，只是使用模板封装，更方便使用。
+
+
+## <a name="get_optval"></a> xxsocket::get_optval
+
+设置socket选项。
+
+```cpp
+template <typename _Ty> _Ty get_optval(int level, int optname) const
+```
+
+### 参数
+
+*level*<br/>
+socket选项级别。
+
+*optname*<br/>
+选项类型。
+
+### 返回值
+
+返回选项值。
+
+### 注意
+
+此函数同bsd socket `getsockopt`功能相同，只是使用模板封装，更方便使用。
+
+
+## <a name="select"></a> xxsocket::select
+
+设置TCP底层协议的心跳参数。
+
+```cpp
+int select(fd_set* readfds, fd_set* writefds, fd_set* exceptfds, const std::chrono::microseconds& wtimeout)
+```
+
+### 参数
+
+*readfds*<br/>
+可读事件描述符数组。
+
+*writefds*<br/>
+可写事件描述符数组。
+
+*exceptfds*<br/>
+异常事件描述符数组。
+
+*wtimeout*<br/>
+等待事件超时事件。
+
+### 返回值
+
+`0`: 超时，`> 0`: 成功， `< 0`: 失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+
+## <a name="shutdown"></a> xxsocket::shutdown
+
+关闭TCP传输通道。
+
+```cpp
+int shutdown(int how = SD_BOTH) const;
+```
+
+### 参数
+
+*how*<br/>
+关闭通道类型，取值<br/>
+* `SD_SEND`: 发送通道
+* `SD_RECEIVE`: 接受通道
+* `SD_BOTH`: 全部关闭
+
+### 返回值
+
+`0`: 成功， `< 0`: 失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+## <a name="close"></a> xxsocket::close
+
+关闭socket，释放系统资源。
+
+```cpp
+void close(int shut_how = SD_BOTH);
+```
+
+### 参数
+
+*shut_how*<br/>
+关闭通道类型，取值<br/>
+* `SD_SEND`: 发送通道
+* `SD_RECEIVE`: 接受通道
+* `SD_BOTH`: 全部关闭
+* `SD_NONE`: 全部关闭
+
+### 注意
+
+如果 *shut_how* != `SD_NONE`，此函数会先调用 `shutdown`，再调用底层 `close`。
+
+### 返回值
+
+`0`: 成功， `< 0`: 失败，通过 `xxsocket::get_last_errno` 获取错误码。
 
 ## 请参阅
 
