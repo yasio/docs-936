@@ -115,7 +115,7 @@ int xxsocket::xpconnect(const char* hostname, u_short port, u_short local_port =
 ### 参数
 
 *hostname*<br/>
-要连接服务器主机名，可以使 `IP地址` 或 `域名`。
+要连接服务器主机名，可以是 `IP地址` 或 `域名`。
 
 *port*<br/>
 要连接服务器的端口。
@@ -125,7 +125,7 @@ int xxsocket::xpconnect(const char* hostname, u_short port, u_short local_port =
 
 ### 注意
 
-会自动检测本机支持的ip协议栈。
+会自动检测本机支持的ip协议栈版本。
 
 ### 返回值
 
@@ -142,7 +142,7 @@ int xxsocket::xpconnect_n(const char* hostname, u_short port, const std::chrono:
 ### 参数
 
 *hostname*<br/>
-要连接服务器主机名，可以使 `IP地址` 或 `域名`。
+要连接服务器主机名，可以是 `IP地址` 或 `域名`。
 
 *port*<br/>
 要连接服务器的端口。
@@ -174,7 +174,7 @@ int xxsocket::pconnect(const endpoint& ep, u_short local_port = 0);
 ### 参数
 
 *hostname*<br/>
-要连接服务器主机名，可以使 `IP地址` 或 `域名`。
+要连接服务器主机名，可以是 `IP地址` 或 `域名`。
 
 *ep*<br/>
 要连接服务器的地址。
@@ -209,7 +209,7 @@ int pconnect_n(const endpoint& ep, u_short local_port = 0);
 ### 参数
 
 *hostname*<br/>
-要连接服务器主机名，可以使 `IP地址` 或 `域名`。
+要连接服务器主机名，可以是 `IP地址` 或 `域名`。
 
 *ep*<br/>
 要连接服务器的地址。
@@ -289,7 +289,7 @@ bool open(int af = AF_INET, int type = SOCK_STREAM, int protocol = 0);
 socket类型， `SOCK_STREAM` (TCP), `SOCK_DGRAM` (UDP)。
 
 *protocol*<br/>
-协议，对于TCP/UDP，取 `0` 即可。
+协议，对于TCP/UDP，传 `0` 即可。
 
 
 ### 返回值
@@ -313,7 +313,7 @@ bool reopen(int af = AF_INET, int type = SOCK_STREAM, int protocol = 0);
 socket类型， `SOCK_STREAM` (TCP), `SOCK_DGRAM` (UDP)。
 
 *protocol*<br/>
-协议，对于TCP/UDP，取 `0` 即可。
+协议，对于TCP/UDP，传 `0` 即可。
 
 
 ### 返回值
@@ -439,7 +439,7 @@ int bind_any(bool ipv6) const;
 
 ## <a name="listen"></a> xxsocket::listen
 
-开始监听来自tcp客户端的握手请求。
+开始监听来自TCP客户端的握手请求。
 
 ```cpp
 int listen(int backlog = SOMAXCONN) const;
