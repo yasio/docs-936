@@ -102,7 +102,7 @@ move构造函数右值引用。
 ip协议地址类型。
 
 *protocol*<br/>
-协议类型，对于TCP/UDP直接取 `0` 就可以。
+协议类型，对于TCP/UDP直接传 `0` 就可以。
 
 ## <a name="xpconnect"></a> xxsocket::xpconnect
 
@@ -296,7 +296,7 @@ socket类型， `SOCK_STREAM` (TCP), `SOCK_DGRAM` (UDP)。
 
 `true`: 成功， `false`失败，通过 `xxsocket::get_last_errno` 获取错误码。
 
-## <a name="open"></a> xxsocket::open
+## <a name="reopen"></a> xxsocket::reopen
 
 打开一个socket。
 
