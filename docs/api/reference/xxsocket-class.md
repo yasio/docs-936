@@ -330,7 +330,7 @@ socket类型， `SOCK_STREAM` (TCP), `SOCK_DGRAM` (UDP)。
 判断socket是否已打开。
 
 ```cpp
-bool is_open(void) const;
+bool is_open() const;
 ```
 
 ### 返回值
@@ -343,7 +343,7 @@ bool is_open(void) const;
 获取socket文件描述符。
 
 ```cpp
-socket_native_type native_handle(void) const;
+socket_native_type native_handle() const;
 ```
 
 ### 返回值
@@ -355,7 +355,7 @@ socket文件描述符，`yasio::inet::invalid_socket` 表示无效socket。
 释放底层socket描述符控制权。
 
 ```cpp
-socket_native_type release_handle(void) const;
+socket_native_type release_handle() const;
 ```
 
 ### 返回值
@@ -459,18 +459,39 @@ int listen(int backlog = SOMAXCONN) const;
 接受一个客户端连接。
 
 ```cpp
-xxsocket accept(socklen_t addrlen = sizeof(sockaddr));
+xxsocket accept() const;
 ```
 
 ### 参数
 
 *addrlen*<br/>
-地址大小。
+此参数被忽略，将来版本会移除。
 
 ### 返回值
 
 和客户端通信的 `xxsocket` 对象。
 
+## <a name="accept_n"></a> xxsocket::accept_n
+
+非阻塞方式接受一个客户端连接。
+
+```cpp
+int accept_n(socket_native_type& new_sock) const;
+```
+
+### 参数
+
+*new_sock*<br/>
+输出参数，和客户端通信的底层socket句柄引用
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+### 注意
+
+有此函数是用于TCP服务器，会多次调用，因此不会自动将socket设置为非阻塞模式，<br/>
+因此调用次函数前，请手动调用 `xxsocket::set_nonblocking` 设置非阻塞模式。
 
 ## 请参阅
 
