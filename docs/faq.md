@@ -38,19 +38,19 @@
 ??? question "Lua绑定闪退"
 
     * c++11:
-       * 使用kaguya绑定库，但这个库有个问题：在绑定c++类的过程中，构造c++对象过程是先通过lua_newuserdata, 再通过[placement new](https://en.cppreference.com/w/cpp/language/new)构造对象，在xcode clang release优化编译下会直接闪退
-       * 经过bing.com搜索，发现可通过定义```LUAI_USER_ALIGNMENT_T=max_align_t```来解决
-       * 经过测试, max_align_t在xcode clang下定义为long double类型，长度为16个字节
-       * 参考: http://lua-users.org/lists/lua-l/2019-07/msg00197.html
+        * 使用kaguya绑定库，但这个库有个问题：在绑定c++类的过程中，构造c++对象过程是先通过lua_newuserdata, 再通过[placement new](https://en.cppreference.com/w/cpp/language/new)构造对象，在xcode clang release优化编译下会直接闪退
+        * 经过bing.com搜索，发现可通过定义```LUAI_USER_ALIGNMENT_T=max_align_t```来解决
+        * 经过测试, max_align_t在xcode clang下定义为long double类型，长度为16个字节
+        * 参考: http://lua-users.org/lists/lua-l/2019-07/msg00197.html
     * c++14:
-       * 使用[sol2](https://github.com/ThePhD/sol2)绑定库，sol2可以成功解决kaguya的问题，经过查看sol2的源码，发现其在内部对lua_newuserdata返回的地址做了对齐处理，因此成功避免了clang release优化地址不对齐闪退问题
+        * 使用[sol2](https://github.com/ThePhD/sol2)绑定库，sol2可以成功解决kaguya的问题，经过查看sol2的源码，发现其在内部对lua_newuserdata返回的地址做了对齐处理，因此成功避免了clang release优化地址不对齐闪退问题
     * c++17:
-      *  同样使用[sol2](https://github.com/ThePhD/sol2)库，但xcode会提示ios11以下不支持C++17默认```new```操作符的```Aligned allocation/deallocation```，通过添加编译选项-faligned-allocation可通过编译；
-      * ios10以下不支持stl的shared_mutex(yasio最近做了兼容，对于Apple平台一律使用pthread实现)
+        *  同样使用[sol2](https://github.com/ThePhD/sol2)库，但xcode会提示ios11以下不支持C++17默认```new```操作符的```Aligned allocation/deallocation```，通过添加编译选项-faligned-allocation可通过编译；
+        * ios10以下不支持stl的shared_mutex(yasio最近做了兼容，对于Apple平台一律使用pthread实现)
 
     * 思考：
-      * Lua虚拟机实现中默认最大对齐类型是double，而```max_align_t```类型是C11标准才引入的： https://en.cppreference.com/w/c/types/max_align_t ，因此Lua作为ANSI C89标准兼容实现并未完美处理各个编译器地址对齐问题，而是留给了用户定义: ```LUAI_USER_ALIGNMENT_T```
-      * 在C++11编译系统下已经引入 ```std::max_align_t```类型: https://en.cppreference.com/w/cpp/types/max_align_t
+        * Lua虚拟机实现中默认最大对齐类型是double，而```max_align_t```类型是C11标准才引入的： https://en.cppreference.com/w/c/types/max_align_t ，因此Lua作为ANSI C89标准兼容实现并未完美处理各个编译器地址对齐问题，而是留给了用户定义: ```LUAI_USER_ALIGNMENT_T```
+        * 在C++11编译系统下已经引入 ```std::max_align_t```类型: https://en.cppreference.com/w/cpp/types/max_align_t
 
     **重要: max_align_t各平台定义请查看llvm项目的 [__stddef_max_align_t.h](https://github.com/llvm/llvm-project/blob/master/clang/lib/Headers/__stddef_max_align_t.h)**
 
