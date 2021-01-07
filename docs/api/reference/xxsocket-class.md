@@ -131,7 +131,7 @@ int xxsocket::xpconnect(const char* hostname, u_short port, u_short local_port =
 
 `0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
 
-## <a name="xpconnect"></a> xxsocket::xpconnect
+## <a name="xpconnect_n"></a> xxsocket::xpconnect_n
 
 和远程服务器建立TCP连接。
 
@@ -195,7 +195,7 @@ int xxsocket::pconnect(const endpoint& ep, u_short local_port = 0);
 不会检测本机支持的ip协议栈。
 
 
-## <a name="pconnect"></a> xxsocket::pconnect
+## <a name="pconnect_n"></a> xxsocket::pconnect_n
 
 和远程服务器建立TCP连接。
 
