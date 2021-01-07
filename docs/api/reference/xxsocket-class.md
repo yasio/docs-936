@@ -79,6 +79,264 @@ namespace yasio { namespace inet { class xxsocket; } }
 |[xxsocket::traverse_local_address](#traverse_local_address)|枚举本机地址|
 
 
+## <a name="xxsocket"></a> xxsocket::xxsocket
+
+构造 `xxsocket` 对象。
+
+```cpp
+xxsocket::xxsocket();
+xxsocket::xxsocket(socket_native_type handle);
+xxsocket::xxsocket(xxsocket&& right);
+xxsocket::xxsocket(int af, int type, int protocol);
+```
+
+### 参数
+
+*handle*<br/>
+通过已有socket句柄构造 `xxsocket` 对象。
+
+*right*<br/>
+move构造函数右值引用。
+
+*af*<br/>
+ip协议地址类型。
+
+*protocol*<br/>
+协议类型，对于TCP/UDP直接取 `0` 就可以。
+
+## <a name="xpconnect"></a> xxsocket::xpconnect
+
+和远程服务器建立TCP连接。
+
+```cpp
+int xxsocket::xpconnect(const char* hostname, u_short port, u_short local_port = 0);
+```
+
+### 参数
+
+*hostname*<br/>
+要连接服务器主机名，可以使 `IP地址` 或 `域名`。
+
+*port*<br/>
+要连接服务器的端口。
+
+*local_port*<br/>
+本地通信端口号，默认值 `0` 表示随机分配。
+
+### 注意
+
+会自动检测本机支持的ip协议栈。
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+## <a name="xpconnect"></a> xxsocket::xpconnect
+
+和远程服务器建立TCP连接。
+
+```cpp
+int xxsocket::xpconnect_n(const char* hostname, u_short port, const std::chrono::microseconds& wtimeout, u_short local_port = 0);
+```
+
+### 参数
+
+*hostname*<br/>
+要连接服务器主机名，可以使 `IP地址` 或 `域名`。
+
+*port*<br/>
+要连接服务器的端口。
+
+*local_port*<br/>
+本地通信端口号，默认值 `0` 表示随机分配。
+
+*wtimeout*<br/>
+建立连接超时时间。
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+### 注意
+
+会自动检测本机支持的ip协议栈。
+
+
+## <a name="pconnect"></a> xxsocket::pconnect
+
+和远程服务器建立TCP连接。
+
+```cpp
+int xxsocket::pconnect(const char* hostname, u_short port, u_short local_port = 0);
+int xxsocket::pconnect(const endpoint& ep, u_short local_port = 0);
+```
+
+### 参数
+
+*hostname*<br/>
+要连接服务器主机名，可以使 `IP地址` 或 `域名`。
+
+*ep*<br/>
+要连接服务器的地址。
+
+*port*<br/>
+要连接服务器的端口。
+
+*local_port*<br/>
+本地通信端口号，默认值 `0` 表示随机分配。
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+
+### 注意
+
+不会检测本机支持的ip协议栈。
+
+
+## <a name="pconnect"></a> xxsocket::pconnect
+
+和远程服务器建立TCP连接。
+
+```cpp
+int pconnect_n(const char* hostname, u_short port, const std::chrono::microseconds& wtimeout, u_short local_port = 0);
+int pconnect_n(const char* hostname, u_short port, u_short local_port = 0);
+int pconnect_n(const endpoint& ep, const std::chrono::microseconds& wtimeout, u_short local_port = 0);
+int pconnect_n(const endpoint& ep, u_short local_port = 0);
+```
+
+### 参数
+
+*hostname*<br/>
+要连接服务器主机名，可以使 `IP地址` 或 `域名`。
+
+*ep*<br/>
+要连接服务器的地址。
+
+*port*<br/>
+要连接服务器的端口。
+
+*local_port*<br/>
+本地通信端口号，默认值 `0` 表示随机分配。
+
+*wtimeout*<br/>
+建立连接超时时间。
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+
+## <a name="pserve"></a> xxsocket::pserve
+
+开启本地TCP服务监听。
+
+```cpp
+int pserve(const char* addr, u_short port);
+int pserve(const endpoint& ep);
+```
+
+### 参数
+
+*addr*<br/>
+本机指定网卡 `IP地址`。
+
+*ep*<br/>
+本机地址。
+
+*port*<br/>
+TCP监听端口。
+
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+
+## <a name="swap"></a> xxsocket::swap
+
+交换底层socket句柄。
+
+```cpp
+xxsocket& swap(xxsocket& who);
+```
+
+### 参数
+
+*who*<br/>
+交换对象。
+
+### 返回值
+
+`xxsocket` 左值对象的引用。
+
+
+## <a name="open"></a> xxsocket::open
+
+打开一个socket。
+
+```cpp
+bool open(int af = AF_INET, int type = SOCK_STREAM, int protocol = 0);
+```
+
+### 参数
+
+*af*<br/>
+地址类型，例如 `AF_INET` (ipv4)，`AF_INET6` (ipv6)。
+
+*type*<br/>
+socket类型， `SOCK_STREAM` (TCP), `SOCK_DGRAM` (UDP)。
+
+*protocol*<br/>
+协议，对于TCP/UDP，取 `0` 即可。
+
+
+### 返回值
+
+`true`: 成功， `false`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+## <a name="open"></a> xxsocket::open
+
+打开一个socket。
+
+```cpp
+bool reopen(int af = AF_INET, int type = SOCK_STREAM, int protocol = 0);
+```
+
+### 参数
+
+*af*<br/>
+地址类型，例如 `AF_INET` (ipv4)，`AF_INET6` (ipv6)。
+
+*type*<br/>
+socket类型， `SOCK_STREAM` (TCP), `SOCK_DGRAM` (UDP)。
+
+*protocol*<br/>
+协议，对于TCP/UDP，取 `0` 即可。
+
+
+### 返回值
+
+`true`: 成功， `false`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+### 注意
+
+如果socket已打开，此次函数会先关闭，再重新打开。
+
+
+## <a name="is_open"></a> xxsocket::is_open
+
+判断socket是否已打开。
+
+```cpp
+bool is_open(void) const;
+```
+
+### 返回值
+
+`true`: 已打开， `false`: 未打开。
+
 ## 请参阅
 
 [io_service Class](./io_service-class.md)
