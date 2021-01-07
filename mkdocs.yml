@@ -43,7 +43,7 @@ markdown_extensions:
   - pymdownx.magiclink:
       repo_url_shorthand: true
       user: yasio
-      repo: docs-936
+      repo: yasio
   - pymdownx.mark
   - pymdownx.smartsymbols
   - pymdownx.snippets:
