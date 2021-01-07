@@ -19,7 +19,7 @@ nav:
     - io_service选项: api/reference/io_service-options.md
   - 预处理器: preprocessor.md
   - 常见问题: faq.md
-markdown_extensions: 
+markdown_extensions:
   - admonition
   - abbr
   - attr_list
