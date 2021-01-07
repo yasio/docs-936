@@ -33,7 +33,7 @@ namespace yasio { namespace inet { class xxsocket; } }
 |[xxsocket::xpconnect_n](#xpconnect_n)|非阻塞方式建立TCP连接|
 |[xxsocket::pconnect](#pconnect)|建立TCP连接|
 |[xxsocket::pconnect_n](#pconnect_n)|非阻塞方式建立TCP连接|
-|[xxsocket::pserv](#pserv)|创建tcp服务端|
+|[xxsocket::pserve](#pserve)|创建tcp服务端|
 |[xxsocket::swap](#swap)|交换socket描述符句柄|
 |[xxsocket::open](#open)|打开socket|
 |[xxsocket::reopen](#reopen)|重新打开socket|
