@@ -337,6 +337,141 @@ bool is_open(void) const;
 
 `true`: 已打开， `false`: 未打开。
 
+
+## <a name="native_handle"></a> xxsocket::native_handle
+
+获取socket文件描述符。
+
+```cpp
+socket_native_type native_handle(void) const;
+```
+
+### 返回值
+
+socket文件描述符，`yasio::inet::invalid_socket` 表示无效socket。
+
+## <a name="native_handle"></a> xxsocket::release_handle
+
+释放底层socket描述符控制权。
+
+```cpp
+socket_native_type release_handle(void) const;
+```
+
+### 返回值
+
+释放前的socket文件描述符
+
+## <a name="set_nonblocking"></a> xxsocket::set_nonblocking
+
+设置socket的非阻塞模式。
+
+```cpp
+int set_nonblocking(bool nonblocking) const;
+```
+
+### 参数
+
+*nonblocking*<br/>
+`true`: 非阻塞模式，`false`: 阻塞模式。
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+## <a name="test_nonblocking"></a> xxsocket::test_nonblocking
+
+检测socket是否为非阻塞模式。
+
+```cpp
+int test_nonblocking() const;
+```
+
+### 返回值
+
+`1`: 非阻塞模式， `0`: 阻塞模式。
+
+### 注意
+
+对于winsock2，未连接的 `SOCK_STREAM` 类型socket会返回 `-1`。
+
+## <a name="bind"></a> xxsocket::bind
+
+绑定socket本机地址。
+
+```cpp
+int bind(const char* addr, unsigned short port) const;
+int bind(const endpoint& ep) const;
+```
+
+### 参数
+
+*addr*<br/>
+本机指定网卡ip地址。
+
+*port*<br/>
+要绑定的端口。
+
+*ep*<br/>
+要绑定的本机地址。
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+## <a name="bind_any"></a> xxsocket::bind_any
+
+绑定socket本机任意地址。
+
+```cpp
+int bind_any(bool ipv6) const;
+```
+
+### 参数
+
+*ipv6*<br/>
+是否绑定本机任意IPv6地址
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+
+## <a name="listen"></a> xxsocket::listen
+
+开始监听来自tcp客户端的握手请求。
+
+```cpp
+int listen(int backlog = SOMAXCONN) const;
+```
+
+### 参数
+
+*backlog*<br/>
+最大监听数。
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+## <a name="accept"></a> xxsocket::accept
+
+接受一个客户端连接。
+
+```cpp
+xxsocket accept(socklen_t addrlen = sizeof(sockaddr));
+```
+
+### 参数
+
+*addrlen*<br/>
+地址大小。
+
+### 返回值
+
+和客户端通信的 `xxsocket` 对象。
+
+
 ## 请参阅
 
 [io_service Class](./io_service-class.md)
