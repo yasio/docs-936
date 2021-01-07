@@ -490,8 +490,248 @@ int accept_n(socket_native_type& new_sock) const;
 
 ### 注意
 
-有此函数是用于TCP服务器，会多次调用，因此不会自动将socket设置为非阻塞模式，<br/>
+由于此函数是用于TCP服务器，会多次调用，因此不会自动将socket设置为非阻塞模式，<br/>
 因此调用次函数前，请手动调用 `xxsocket::set_nonblocking` 设置非阻塞模式。
+
+
+## <a name="connect"></a> xxsocket::connect
+
+建立连接。
+
+```cpp
+int connect(const char* addr, u_short port);
+int connect(const endpoint& ep);
+```
+
+### 参数
+
+*addr*<br/>
+远程主机ip地址。
+
+*port*<br/>
+远程主机端口。
+
+*ep*<br/>
+远程主机地址。
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+### 注意
+
+TCP: 发起TCP三次握手  
+
+UDP: 建立4元组绑定
+
+## <a name="connect"></a> xxsocket::connect_n
+
+建立连接。
+
+```cpp
+int connect_n(const char* addr, u_short port, const std::chrono::microseconds& wtimeout);
+int connect_n(const endpoint& ep, const std::chrono::microseconds& wtimeout);
+int connect_n(const endpoint& ep);
+```
+
+### 参数
+
+*addr*<br/>
+远程主机ip地址。
+
+*port*<br/>
+远程主机端口。
+
+*ep*<br/>
+远程主机地址。
+
+*wtimeout*<br/>
+建立连接的超时时间。
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+### 注意
+
+TCP: 发起TCP三次握手  
+
+UDP: 建立4元组绑定
+
+## <a name="connect"></a> xxsocket::connect_n
+
+解除socket和远程主机的4元组绑定。
+
+```cpp
+int disconnect() const;
+```
+
+### 返回值
+
+`0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+### 注意
+
+只用于 `SOCK_DGRAM`(UDP) 类型socket。
+
+## <a name="send"></a> xxsocket::send
+
+向远端发送指定长度数据。
+
+```cpp
+int send(const void* buf, int len, int flags = 0);
+```
+
+### 参数
+
+*buf*<br/>
+要发送数据的起始字节地址。
+
+*len*<br/>
+要发送数据的长度。
+
+*flags*<br/>
+发送数据底层标记。
+
+### 返回值
+
+`==len`: 成功， `< len`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+## <a name="send_n"></a> xxsocket::send_n
+
+在超时时间内尽力向远端发送指定长度数据。
+
+```cpp
+int send_n(const void* buf, int len, const std::chrono::microseconds& wtimeout, int flags = 0);
+```
+
+### 参数
+
+*buf*<br/>
+要发送数据的起始字节地址。
+
+*len*<br/>
+要发送数据的长度。
+
+*wtimeout*<br/>
+发送超时时间。
+
+*flags*<br/>
+发送数据底层标记。
+
+### 返回值
+
+`==len`: 成功， `< len`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+## <a name="recv"></a> xxsocket::recv
+
+从内核去除远程主机发送过来的数据。
+
+```cpp
+int recv(void* buf, int len, int flags = 0) const;
+```
+
+### 参数
+
+*buf*<br/>
+接收数据缓冲区。
+
+*len*<br/>
+接收数据缓冲区长度。
+
+*flags*<br/>
+接收数据底层标记。
+
+### 返回值
+
+`==len`: 成功， `< len`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+### 注意
+
+此函数是否立即返回，取决于socket本身是否是 `非阻塞模式`。
+
+## <a name="recv_n"></a> xxsocket::recv_n
+
+在超时时间内尽力从内核取出指定长度数据。
+
+```cpp
+int recv_n(void* buf, int len, const std::chrono::microseconds& wtimeout, int flags = 0) const;
+```
+
+### 参数
+
+*buf*<br/>
+接收数据缓冲区。
+
+*len*<br/>
+接收数据缓冲区长度。
+
+*wtimeout*<br/>
+接收超时时间。
+
+*flags*<br/>
+接收数据底层标记。
+
+### 返回值
+
+`==len`: 成功， `< len`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+
+## <a name="sendto"></a> xxsocket::sendto
+
+向远程主机发送 `DGRAM` （UDP）数据。
+
+```cpp
+int sendto(const void* buf, int len, const endpoint& to, int flags = 0) const;
+```
+
+### 参数
+
+*buf*<br/>
+待发送数据缓冲区。
+
+*len*<br/>
+待发送数据缓冲区长度。
+
+*to*<br/>
+发送目标地址。
+
+*flags*<br/>
+发送数据底层标记。
+
+### 返回值
+
+`==len`: 成功， `< len`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+## <a name="recvfrom"></a> xxsocket::recvfrom
+
+从内核去除远程主机发送过来的数据。
+
+```cpp
+int recvfrom(void* buf, int len, endpoint& peer, int flags = 0) const;
+```
+
+### 参数
+
+*buf*<br/>
+接收数据缓冲区。
+
+*len*<br/>
+接收数据缓冲区长度。
+
+*peer*<br/>
+接收数据来源，输出参数。
+
+*flags*<br/>
+接收数据底层标记。
+
+### 返回值
+
+`==len`: 成功， `< len`失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
+### 注意
+
+此函数是否立即返回，取决于socket本身是否是 `非阻塞模式`。
 
 ## 请参阅
 
