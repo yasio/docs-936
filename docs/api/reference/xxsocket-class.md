@@ -998,13 +998,136 @@ void close(int shut_how = SD_BOTH);
 * `SD_BOTH`: 全部关闭
 * `SD_NONE`: 全部关闭
 
+### 返回值
+
+`0`: 成功， `< 0`: 失败，通过 `xxsocket::get_last_errno` 获取错误码。
+
 ### 注意
 
 如果 *shut_how* != `SD_NONE`，此函数会先调用 `shutdown`，再调用底层 `close`。
 
+## <a name="tcp_rtt"></a> xxsocket::tcp_rtt
+
+获取TCP连接的RTT。
+
+```cpp
+uint32_t tcp_rtt() const;
+```
+
 ### 返回值
 
-`0`: 成功， `< 0`: 失败，通过 `xxsocket::get_last_errno` 获取错误码。
+返回TCP的RTT事件，单位: `微妙`。
+
+## <a name="get_last_errno"></a> xxsocket::get_last_errno
+
+获取最近一次socket操作错误码。
+
+```cpp
+ static int get_last_errno();
+```
+
+### 返回值
+
+`0`: 无错误， `> 0` 通过 `xxsocket::strerror` 转换为详细错误信息。
+
+### 注意
+
+此函数是线程安全的。
+
+## <a name="set_last_errno"></a> xxsocket::set_last_errno
+
+设置socket操作错误码。
+
+```cpp
+static void set_last_errno(int error);
+```
+
+### 参数
+
+*error*<br/>
+错误码。
+
+### 注意
+
+此函数是线程安全的。
+
+## <a name="not_send_error"></a> xxsocket::not_send_error
+
+判断是否是发送时socket出现无法继续的错误。
+
+```cpp
+static bool not_send_error(int error);
+```
+
+### 参数
+
+*error*<br/>
+错误码。
+
+### 返回值
+
+`true`: socket正常，`false`: socket状态已经发生错误，应当关闭socket终止通讯。
+
+### 注意
+
+仅当发送操作返回值 `< 0`时，调用此函数。
+
+## <a name="not_recv_error"></a> xxsocket::not_recv_error
+
+判断是否是接收时socket出现无法继续的错误。
+
+```cpp
+static bool not_recv_error(int error);
+```
+
+### 参数
+
+*error*<br/>
+错误码。
+
+### 返回值
+
+`true`: socket正常，`false`: socket状态已经发生错误，应当关闭socket终止通讯。
+
+### 注意
+
+仅当接收操作返回值 `< 0`时，调用此函数。
+
+
+## <a name="strerror"></a> xxsocket::strerror
+
+将错误码转换为字符串。
+
+```cpp
+static const char* strerror(int error);
+```
+
+### 参数
+
+*error*<br/>
+错误码。
+
+### 返回值
+
+错误信息的字符串。
+
+## <a name="gai_strerror"></a> xxsocket::gai_strerror
+
+将`getaddrinfo`错误码转换为字符串。
+
+```cpp
+static const char* gai_strerror(int error);
+```
+
+### 参数
+
+*error*<br/>
+错误码。
+
+### 返回值
+
+错误信息的字符串。
+
 
 ## 请参阅
 
