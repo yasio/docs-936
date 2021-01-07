@@ -9,6 +9,10 @@ helpviewer_keywords: []
 
 封装底层bsd socket常用API，屏蔽各操作系统平台差异。
 
+!!! attention "注意"
+
+    xxsocket的所有 `xxx_n` 接口均会将socket设置为非阻塞模式，且不会恢复。
+
 ## 语法
 
 ```cpp
@@ -35,7 +39,7 @@ namespace yasio { namespace inet { class xxsocket; } }
 |[xxsocket::reopen](#reopen)|重新打开socket|
 |[xxsocket::is_open](#is_open)|检查socket是否打开|
 |[xxsocket::native_handle](#native_handle)|获取socket句柄|
-|[xxsocket::detach](#detach)|解除socket句柄管理|
+|[xxsocket::release_handle](#release_handle)|释放socket句柄控制权|
 |[xxsocket::set_nonblocking](#set_nonblocking)|将socket设置为非阻塞模式|
 |[xxsocket::test_nonblocking](#test_nonblocking)|检测socket是否为非阻塞模式|
 |[xxsocket::bind](#bind)|绑定指定本地指定网卡地址|

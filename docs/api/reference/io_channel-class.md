@@ -29,7 +29,7 @@ namespace yasio { namespace inet { class io_channel; } }
 ## 注意
 
 当io_service对象构造后，最大信道数量不可改变. <br/>
-信道句柄可通过 ``io_service::cindex_to_handle`` 获取.
+信道句柄可通过 `io_service::channel_at` 获取.
 
 
 ## <a name="get_service"></a> io_channel::get_service
