@@ -9,9 +9,9 @@ helpviewer_keywords: []
 
 封装底层bsd socket常用API，屏蔽各操作系统平台差异。
 
-!!! attention "注意"
+!!! attention "特别注意"
 
-    xxsocket的所有 `xxx_n` 接口均会将socket设置为非阻塞模式，且不会恢复。
+    xxsocket除了 `accept_n`以外的所有 `xxx_n` 接口均会将socket设置为非阻塞模式，且不会恢复。
 
 ## 语法
 
