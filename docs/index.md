@@ -113,7 +113,7 @@ yasio 是一个轻量级跨平台的异步socket库，专注于客户端和基�
     _G.yservice = service -- Store service to global table as a singleton instance
     ```
 
-## [测试](https://github.com/yasio/yasio/tree/master/tests) & [示例](https://github.com/yasio/yasio/tree/master/tests):
+## [测试](https://github.com/yasio/yasio/tree/master/tests) & [示例](https://github.com/yasio/yasio/tree/master/tests)
 
 * 测试:
     * [echo_server](https://github.com/yasio/yasio/tree/master/tests/echo_server): TCP/UDP/KCP 回射服务器
