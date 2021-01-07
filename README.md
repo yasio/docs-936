@@ -14,5 +14,6 @@ yasio 中文文档, 文档构建工具: [mkdocs](https://www.mkdocs.org/)
 - https://squidfunk.github.io/mkdocs-material/reference/admonitions/
 - https://facelessuser.github.io/pymdown-extensions/
 - https://cyent.github.io/markdown-with-mkdocs-material/
+- https://github.com/jimporter/mike
 - pdf: https://www.zhihu.com/question/20849824/answer/565654864
 
