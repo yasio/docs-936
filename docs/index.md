@@ -2,7 +2,7 @@
 
 [![Release](https://img.shields.io/badge/release-v3.36.0-blue.svg)](https://github.com/yasio/yasio/releases)
 [![GitHub stars](https://img.shields.io/github/stars/yasio/yasio.svg?label=Stars)](https://github.com/yasio/yasio)
-[![Docs Status](https://readthedocs.org/projects/yasio-docs-437/badge/?version=latest)](https://readthedocs.org/projects/yasio-docs-437)
+[![Documentation Status](https://readthedocs.org/projects/yasio-docs/badge/?version=latest)](https://readthedocs.org/projects/yasio-docs)
 
 yasio 是一个轻量级跨平台的异步socket库，专注于客户端和基于各种游戏引擎的游戏客户端网络服务。
 
