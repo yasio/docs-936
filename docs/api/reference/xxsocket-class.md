@@ -1014,10 +1014,11 @@ int shutdown(int how = SD_BOTH) const;
 ### 参数
 
 *how*<br/>
-关闭通道类型，取值<br/>
-* `SD_SEND`: 发送通道
-* `SD_RECEIVE`: 接受通道
-* `SD_BOTH`: 全部关闭
+关闭通道类型，可传以下枚举值<br/>
+
+- `SD_SEND`: 发送通道
+- `SD_RECEIVE`: 接受通道
+- `SD_BOTH`: 全部关闭
 
 ### 返回值
 
@@ -1034,7 +1035,8 @@ void close(int shut_how = SD_BOTH);
 ### 参数
 
 *shut_how*<br/>
-关闭通道类型，取值<br/>
+关闭通道类型，可以传以下枚举值<br/>
+
 * `SD_SEND`: 发送通道
 * `SD_RECEIVE`: 接受通道
 * `SD_BOTH`: 全部关闭
