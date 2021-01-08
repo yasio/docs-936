@@ -936,7 +936,7 @@ socket选项级别。
 
 ## <a name="select"></a> xxsocket::select
 
-设置TCP底层协议的心跳参数。
+监听socket内核事件。
 
 ```cpp
 int select(fd_set* readfds, fd_set* writefds, fd_set* exceptfds, const std::chrono::microseconds& wtimeout)
