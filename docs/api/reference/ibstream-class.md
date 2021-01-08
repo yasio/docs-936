@@ -125,7 +125,8 @@ _Intty ibstream_view::read_ix();
 
 32/64位整数值。
 
-### Remarks
+### 注意
+
 *_Intty* 的必须是以下类型
 
 - int32_t
