@@ -22,13 +22,13 @@ namespace yasio { namespace inet { class io_event; } }
 
 |Name|Description|
 |----------|-----------------|
-|[io_event::kind](#kind)|获取事件类型.|
-|[io_event::status](#status)|获取事件状态.|
-|[io_event::packet](#packet)|获取事件消息包.|
-|[io_event::timestamp](#timestamp)|获取事件时间戳.|
-|[io_event::transport](#transport)|获取事件传输会话.|
-|[io_event::transport_id](#transport_id)|获取事件传输会话ID.|
-|[io_event::transport_udata](#transport_udata)|设置或获取事件传输会话用户数据.|
+|[io_event::kind](#kind)|获取事件类型|
+|[io_event::status](#status)|获取事件状态|
+|[io_event::packet](#packet)|获取事件消息包|
+|[io_event::timestamp](#timestamp)|获取事件时间戳|
+|[io_event::transport](#transport)|获取事件传输会话|
+|[io_event::transport_id](#transport_id)|获取事件传输会话ID|
+|[io_event::transport_udata](#transport_udata)|设置或获取事件传输会话用户数据|
 
 
 ## <a name="kind"></a> io_event::kind
