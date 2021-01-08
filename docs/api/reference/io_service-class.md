@@ -20,7 +20,7 @@ namespace yasio { namespace inet { class io_service; } }
 
 |Name|Description|
 |----------|-----------------|
-|[io_service::io_service](#io_service)|Constructs a `io_service` object.|
+|[io_service::io_service](#io_service)|构造1个 `io_service` 对象|
 
 ### 公共方法
 
@@ -312,10 +312,6 @@ int write_to(
 发送完成回调 *completion_handler* 不支持 `KCP`。
 
 空buffer会直接被忽略，也不会触发 *completion_handler* 。
-
-### Example
-
-TODO:
 
 ## <a name="schedule"></a> io_service::schedule
 
