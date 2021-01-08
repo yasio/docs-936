@@ -1128,6 +1128,32 @@ static const char* gai_strerror(int error);
 
 错误信息的字符串。
 
+## <a name="resolve"></a> xxsocket::resolve
+
+解析域名。
+
+```cpp
+int resolve(std::vector<endpoint>& endpoints, const char* hostname, unsigned short port = 0, int socktype = SOCK_STREAM);
+```
+
+### 参数
+
+*endpoints*<br/>
+输出参数。
+
+*hostname*<br/>
+域名。
+
+*port*<br/>
+端口。
+
+*socktype*<br/>
+socket类型。
+
+### 返回值
+
+`0`: 无错误， `> 0` 通过 `xxsocket::strerror` 转换为详细错误信息。
+
 
 ## 请参阅
 
