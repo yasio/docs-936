@@ -1352,7 +1352,7 @@ int main(){
 }
 ```
 
-## <a name="getipsv"></a> xxsocket::getipsv
+## <a name="traverse_local_address"></a> xxsocket::traverse_local_address
 
 枚举本机地址。
 
