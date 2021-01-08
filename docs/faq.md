@@ -35,7 +35,7 @@
 
     一般不需要，除非需要检测网络延时展示给用户，详见: https://github.com/yasio/yasio/issues/117
 
-??? question "Lua绑定闪退"
+??? question "Lua绑定闪退怎么办？"
 
     * c++11:
         * 使用kaguya绑定库，但这个库有个问题：在绑定c++类的过程中，构造c++对象过程是先通过lua_newuserdata, 再通过[placement new](https://en.cppreference.com/w/cpp/language/new)构造对象，在xcode clang release优化编译下会直接闪退
@@ -58,6 +58,10 @@
 
     The file `xlua.bundle` needs change attr by command `sudo xattr -r -d com.apple.quarantine xlua.bundle`  
 
+??? question "xxsocket的resolve系列函数socktype参数作用？"
+
+    - winsock实现可以忽略
+    - 其他操作系统如果设置为0会返回多个地址，即使直接传IP。
 
 ## 更多常见问题
 
