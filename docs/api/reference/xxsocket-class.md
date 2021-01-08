@@ -253,6 +253,48 @@ TCP监听端口。
 
 `0`: 成功， `< 0`失败，通过 `xxsocket::get_last_errno` 获取错误码。
 
+### 示例
+
+```cpp
+// xxsocket-serve.cpp
+#include <signal.h>
+#include <vector>
+#include "yasio/xxsocket.hpp"
+using namespace yasio;
+using namespace yasio::inet;
+
+xxsocket g_server;
+static bool g_stopped = false;
+void process_exit(int sig)
+{
+  if (sig == SIGINT)
+  {
+    g_stopped = true;
+    g_server.close();
+  }
+  printf("exit");
+}
+int main()
+{
+  signal(SIGINT, process_exit);
+
+  if (g_server.pserve("0.0.0.0", 1219) != 0)
+    return -1;
+  const char reply_msg[] = "hi, I'm server\n";
+  do
+  {
+    xxsocket cs = g_server.accept();
+    if (cs.is_open())
+    {
+      cs.send(reply_msg, sizeof(reply_msg) - 1);
+      std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+  } while (!g_stopped);
+
+  return 0;
+}
+```
+
 
 ## <a name="swap"></a> xxsocket::swap
 
@@ -322,7 +364,7 @@ socket类型， `SOCK_STREAM` (TCP), `SOCK_DGRAM` (UDP)。
 
 ### 注意
 
-如果socket已打开，此次函数会先关闭，再重新打开。
+如果socket已打开，此函数会先关闭，再重新打开。
 
 
 ## <a name="is_open"></a> xxsocket::is_open
@@ -486,7 +528,7 @@ int accept_n(socket_native_type& new_sock) const;
 ### 注意
 
 由于此函数是用于TCP服务器，会多次调用，因此不会自动将socket设置为非阻塞模式，<br/>
-因此调用次函数前，请手动调用 `xxsocket::set_nonblocking` 设置非阻塞模式。
+因此调用此函数前，请手动调用 `xxsocket::set_nonblocking` 设置非阻塞模式。
 
 
 ## <a name="connect"></a> xxsocket::connect
@@ -1016,7 +1058,7 @@ uint32_t tcp_rtt() const;
 
 ### 返回值
 
-返回TCP的RTT事件，单位: `微妙`。
+返回TCP的RTT事件，单位: `微秒`。
 
 ## <a name="get_last_errno"></a> xxsocket::get_last_errno
 
