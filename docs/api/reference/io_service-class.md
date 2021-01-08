@@ -26,19 +26,19 @@ namespace yasio { namespace inet { class io_service; } }
 
 |Name|Description|
 |----------|-----------------|
-|[io_service::start](#start)|Start the network service thread.|
-|[io_service::stop](#stop)|Stop the network service thread.|
-|[io_service::open](#open)|Open channel.|
-|[io_service::close](#close)|Close transport.|
-|[io_service::is_open](#is_open)|Tests whether channel or transport is open.|
-|[io_service::dispatch](#dispatch)|Dispatch the network io events.|
-|[io_service::write](#write)|Sends data asynchronous.|
-|[io_service::write_to](#write_to)|Sends data to specific remote asynchronous.|
-|[io_service::schedule](#schedule)|Save the stream binary data to file.|
-|[io_service::init_globals](#init_globals)|Init global data with print function callback.|
-|[io_service::cleanup_globals](#cleanup_globals)|Cleanup the global print function callback.|
-|[io_service::channel_at](#channel_at)|Retrieves the channel by index.|
-|[io_service::set_option](#set_option)|Set options.|
+|[io_service::start](#start)|启动网络服务线程|
+|[io_service::stop](#stop)|停止网络服务线程|
+|[io_service::open](#open)|打开信道|
+|[io_service::close](#close)|关闭传输会话|
+|[io_service::is_open](#is_open)|检测信道或会话是否打开|
+|[io_service::dispatch](#dispatch)|分派网络事件|
+|[io_service::write](#write)|异步发送数据|
+|[io_service::write_to](#write_to)|异步发送DGRAM数据|
+|[io_service::schedule](#schedule)|注册定时器|
+|[io_service::init_globals](#init_globals)|显示初始化全局数据|
+|[io_service::cleanup_globals](#cleanup_globals)|清理全局数据|
+|[io_service::channel_at](#channel_at)|获取信道句柄|
+|[io_service::set_option](#set_option)|设置选项|
 
 ## 注意
 
@@ -103,7 +103,7 @@ void start(io_event_cb_t cb);
 ### Parameters
 
 *cb*<br/>
-网络事件回调，默认情况下在 [io_service::dispatch] 调用者线程调度。
+网络事件回调，默认情况下在 [io_service::dispatch](#dispatch) 调用者线程调度。
 
 ### 示例
 
