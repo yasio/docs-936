@@ -1280,7 +1280,7 @@ static int getipsv();
 ### 注意
 
 当返回值支持双栈协议是，用户应当始终优先使用IPv4通信，<br/>
-例如只能手机设备在同时开启`wifi`和`蜂窝网络`时，将会优先选择wifi，<br/>
+例如`智能手机设备`在同时开启`wifi`和`蜂窝网络`时，将会优先选择wifi，<br/>
 而wifi通常是IPv4，详见: https://github.com/halx99/yasio/issues/130
 
 ### 示例
