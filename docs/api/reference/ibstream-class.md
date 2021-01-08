@@ -30,22 +30,22 @@ using fast_ibstream_view = basic_ibstream_view<endian::host_convert_tag>;
 
 |Name|Description|
 |----------|-----------------|
-|[ibstream_view::ibstream_view](#ibstream_view)|Constructs a `ibstream_view` object.|
+|[ibstream_view::ibstream_view](#ibstream_view)|构造1个 `ibstream_view` 对象|
 
 ### 公共方法
 
 |Name|Description|
 |----------|-----------------|
-|[ibstream_view::reset](#reset)|Reset input data, weak reference.|
-|[ibstream_view::read](#read)|Function template, read number value.|
-|[ibstream_view:read_ix](#read_ix)|Function template,read **7bit Encoded Int/Int64**.|
-|[ibstream_view:read_v](#read_v)|Read blob data with **7bit Encoded Int/Int64 lenght field**.|
-|[ibstream_view:read_byte](#read_byte)|Read 1 byte.|
-|[ibstream_view:read_bytes](#read_bytes)|Read blob data without length field.|
-|[ibstream_view::empty](#empty)|Check is stream empty.|
-|[ibstream_view::data](#data)|Retrieves stream data pointer.|
-|[ibstream_view::length](#length)|Retrieves size of stream.|
-|[ibstream_view::seek](#seek)|Moves the read position in a stream.|
+|[ibstream_view::reset](#reset)|重置待反序列化数据|
+|[ibstream_view::read](#read)|函数模板，读取数值|
+|[ibstream_view:read_ix](#read_ix)|函数模板，读取**7bit Encoded Int/Int64**整数值|
+|[ibstream_view:read_v](#read_v)|读取带长度域(**7bit Encoded Int/Int64**)的二进制数据|
+|[ibstream_view:read_byte](#read_byte)|读取1个字节|
+|[ibstream_view:read_bytes](#read_bytes)|读取指定长度二进制数据|
+|[ibstream_view::empty](#empty)|检查流是否为空|
+|[ibstream_view::data](#data)|获取流数据指针|
+|[ibstream_view::length](#length)|获取流大小|
+|[ibstream_view::seek](#seek)|移动流的读取游标|
 
 ## 注意
 
