@@ -8,7 +8,9 @@ helpviewer_keywords: []
 
 提供二进制反序列化功能。
 
-!!! attention "在反序列化过程中，当剩余数据不足时会抛出 `std::out_of_range` 异常。"
+!!! attention "注意"
+
+    在反序列化过程中，当剩余数据不足时会抛出 `std::out_of_range` 异常。
 
 ## 语法
 
