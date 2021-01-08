@@ -6,7 +6,7 @@ helpviewer_keywords: []
 ---
 # io_service Class
 
-实现 `tcp, udp, kcp and ssl-client` 非阻塞通信模型.
+充分利用 `socket.select` 多路复用模型实现网络服务，提供给上层统一的接口来进行 `tcp, udp, kcp, ssl-client` 通信。
 
 ## 语法
 
