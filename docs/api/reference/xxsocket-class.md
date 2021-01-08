@@ -1262,6 +1262,92 @@ socket类型。
 `0`: 无错误， `> 0` 通过 `xxsocket::strerror` 转换为详细错误信息。
 
 
+## <a name="getipsv"></a> xxsocket::getipsv
+
+获取本机支持的IP协议栈标志位。
+
+```cpp
+static int getipsv();
+```
+
+
+### 返回值
+
+- `ipsv_ipv4`: 本机只支持IPv4协议。
+- `ipsv_ipv6`: 本机只支持IPv6协议。
+- `ipsv_dual_stack`: 本机支持IPv4和IPv6双栈协议。
+
+### 注意
+
+当返回值支持双栈协议是，用户应当始终优先使用IPv4通信，<br/>
+例如只能手机设备在同时开启`wifi`和`蜂窝网络`时，将会优先选择wifi，<br/>
+而wifi通常是IPv4，详见: https://github.com/halx99/yasio/issues/130
+
+### 示例
+
+```cpp
+// xxsocket-ipsv.cpp
+#include <vector>
+#include "yasio/xxsocket.hpp"
+using namespace yasio;
+using namespace yasio::inet;
+int main(){
+    const char* host = "github.com";
+    std::vector<ip::endpoint> eps;
+    int flags = xxsocket::get_ipsv();
+    if(flags & ipsv_ipv4) {
+        xxsocket::resolve_v4(eps, host, 80);
+    }
+    else if(flags & ipsv_ipv6) {
+        xxsocket::resolve_tov6(eps, host, 80);
+    }
+    else {
+        std::cerr << "Local network not available!\n";
+    }
+    return 0;
+}
+```
+
+## <a name="getipsv"></a> xxsocket::getipsv
+
+枚举本机地址。
+
+```cpp
+static void traverse_local_address(std::function<bool(const ip::endpoint&)> handler);
+```
+
+### 参数
+
+*handler*<br/>
+枚举地址回调。
+
+### 示例
+
+```cpp
+// xxsocket-traverse.cpp
+#include <vector>
+#include "yasio/xxsocket.hpp"
+using namespace yasio;
+using namespace yasio::inet;
+int main(){
+    int flags = 0;
+    xxsocket::traverse_local_address([&](const ip::endpoint& ep) -> bool {
+        switch (ep.af())
+        {
+          case AF_INET:
+            flags |= ipsv_ipv4;
+            break;
+          case AF_INET6:
+            flags |= ipsv_ipv6;
+            break;
+        }
+        return (flags == ipsv_dual_stack);
+    });
+    YASIO_LOG("Supported ip stack flags=%d", flags);
+    return flags;
+}
+```
+
 ## 请参阅
 
 [io_service Class](./io_service-class.md)
