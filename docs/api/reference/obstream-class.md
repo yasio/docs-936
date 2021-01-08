@@ -26,7 +26,7 @@ using fast_obstream = basic_obstream<endian::host_convert_tag>;
 
 |Name|Description|
 |----------|-----------------|
-|[obstream::obstream](#obstream)|Constructs a `obstream` object.|
+|[obstream::obstream](#obstream)|构造1个`obstream` 对象|
 
 ### 公共方法
 
@@ -55,7 +55,7 @@ using fast_obstream = basic_obstream<endian::host_convert_tag>;
 
 ## <a name="obstream"></a> obstream::obstream
 
-构造 `obstream` 对象.
+构造 `obstream` 对象。
 
 ```cpp
 obstream(size_t capacity = 128);
@@ -121,7 +121,7 @@ void write_v(cxx17::string_view sv);
 ### 参数
 
 *sv*<br/>
-要写入的数据.
+要写入的数据。
 
 ### 注意
 
@@ -139,9 +139,10 @@ void write_byte(uint8_t value);
 ### 参数
 
 *value*<br/>
-要写入的值
+要写入的值。
 
-### Remarks
+### 注意
+
 此函数功能等价于 [obstream::write<uint8_t>](#write)
 
 
@@ -177,7 +178,7 @@ void write_bytes(std::streamoff offset, const void* data, int length);
 
 ## <a name="empty"></a> obstream::empty
 
-判断流是否为空
+判断流是否为空。
 
 ```cpp
 bool empty() const;
@@ -185,11 +186,11 @@ bool empty() const;
 
 ### 返回值
 
-`true` 空; `false` 非空.
+`true` 空; `false` 非空。
 
 ### 注意
 
-此函数等价于 [length](#length) == 0.
+此函数等价于 [length](#length) == 0。
 
 
 ## <a name="data"></a> obstream::data
