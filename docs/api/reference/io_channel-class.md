@@ -7,7 +7,7 @@ helpviewer_keywords: []
 
 # io_channel Class
 
-负责建立 tcp/udp/kcp 连接并创建transport.
+负责建立 tcp/udp/kcp 连接并创建transport。
 
 
 ## 语法
@@ -22,14 +22,14 @@ namespace yasio { namespace inet { class io_channel; } }
 
 |Name|Description|
 |----------|-----------------|
-|[io_channel::get_service](#get_service)|获取管理信道的io_service.|
-|[io_channel::index](#index)|获取信道索引.|
-|[io_channel::remote_port](#remote_port)|获取信道远程端口.|
+|[io_channel::get_service](#get_service)|获取管理信道的io_service|
+|[io_channel::index](#index)|获取信道索引|
+|[io_channel::remote_port](#remote_port)|获取信道远程端口|
 
 ## 注意
 
-当io_service对象构造后，最大信道数量不可改变. <br/>
-信道句柄可通过 `io_service::channel_at` 获取.
+当io_service对象构造后，最大信道数量不可改变， <br/>
+信道句柄可通过 `io_service::channel_at` 获取。
 
 
 ## <a name="get_service"></a> io_channel::get_service
