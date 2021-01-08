@@ -1130,10 +1130,117 @@ static const char* gai_strerror(int error);
 
 ## <a name="resolve"></a> xxsocket::resolve
 
-解析域名。
+解析域名包含的所有地址。
 
 ```cpp
 int resolve(std::vector<endpoint>& endpoints, const char* hostname, unsigned short port = 0, int socktype = SOCK_STREAM);
+```
+
+### 参数
+
+*endpoints*<br/>
+输出参数。
+
+*hostname*<br/>
+域名。
+
+*port*<br/>
+端口。
+
+*socktype*<br/>
+socket类型。
+
+### 返回值
+
+`0`: 无错误， `> 0` 通过 `xxsocket::strerror` 转换为详细错误信息。
+
+
+## <a name="resolve_v4"></a> xxsocket::resolve_v4
+
+解析域名包含的IPv4地址。
+
+```cpp
+int resolve_v4(std::vector<endpoint>& endpoints, const char* hostname, unsigned short port = 0, int socktype = SOCK_STREAM);
+```
+
+### 参数
+
+*endpoints*<br/>
+输出参数。
+
+*hostname*<br/>
+域名。
+
+*port*<br/>
+端口。
+
+*socktype*<br/>
+socket类型。
+
+### 返回值
+
+`0`: 无错误， `> 0` 通过 `xxsocket::strerror` 转换为详细错误信息。
+
+## <a name="resolve_v6"></a> xxsocket::resolve_v6
+
+解析域名包含的IPv6地址。
+
+```cpp
+int resolve_v6(std::vector<endpoint>& endpoints, const char* hostname, unsigned short port = 0, int socktype = SOCK_STREAM);
+```
+
+### 参数
+
+*endpoints*<br/>
+输出参数。
+
+*hostname*<br/>
+域名。
+
+*port*<br/>
+端口。
+
+*socktype*<br/>
+socket类型。
+
+### 返回值
+
+`0`: 无错误， `> 0` 通过 `xxsocket::strerror` 转换为详细错误信息。
+
+## <a name="resolve_v4to6"></a> xxsocket::resolve_v4to6
+
+仅解析域名包含的IPv4地址并转换为IPv6 V4MAPPED格式。
+
+```cpp
+int resolve_v4to6(std::vector<endpoint>& endpoints, const char* hostname, unsigned short port = 0, int socktype = SOCK_STREAM);
+```
+
+### 参数
+
+*endpoints*<br/>
+输出参数。
+
+*hostname*<br/>
+域名。
+
+*port*<br/>
+端口。
+
+*socktype*<br/>
+socket类型。
+
+### 返回值
+
+`0`: 无错误， `> 0` 通过 `xxsocket::strerror` 转换为详细错误信息。
+
+
+
+## <a name="resolve_tov6"></a> xxsocket::resolve_tov6
+
+解析域名包含的所有地址，IPv4地址会转换为IPv6 V4MAPPED格式。
+
+```cpp
+int resolve_tov6(std::vector<endpoint>& endpoints, const char* hostname, unsigned short port = 0, int socktype = SOCK_STREAM);
 ```
 
 ### 参数
