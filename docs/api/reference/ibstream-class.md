@@ -8,6 +8,8 @@ helpviewer_keywords: []
 
 提供二进制反序列化功能。
 
+!!! attention "在反序列化过程中，当剩余数据不足时会抛出 `std::out_of_range` 异常。"
+
 ## 语法
 
 ```cpp
@@ -107,9 +109,6 @@ _Nty ibstream_view::read();
 ### 注意
 
 *_Nty* 实际类型可以是任意1~8字节整数类型或浮点类型。<br />
-
-当流剩余数据不足时会抛出 `std::out_of_range` 异常。
-
 
 ## <a name="read_ix"></a> ibstream_view::read_ix
 
@@ -231,10 +230,10 @@ ptrdiff_t seek(ptrdiff_t offset, int whence);
 
 ### 参数
 
-*offset*\
+*offset*<br/>
 和*whence*相关的偏移量。
 
-*whence*\
+*whence*<br/>
 含义等同于C标准库枚举值： `SEEK_SET`,`SEEK_CUR`,`SEEK_END`。
 
 
