@@ -227,7 +227,7 @@ void dispatch(int max_count);
 ### 参数
 
 *max_count*<br/>
-本次最大分配事件数。
+本次最大分派事件数。
 
 ### 注意
 
