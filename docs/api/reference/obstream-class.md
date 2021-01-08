@@ -8,14 +8,19 @@ helpviewer_keywords: []
 
 提供二进制序列化功能。
 
+!!! attention "注意"
+
+    自3.36.0起，优化为类模板basic_obstream实现，体现了C++模板强大的代码复用能力。
+
+    `obstream` 当写入int16~int64和float/double类型是, 会自动将主机字节序转换问网络字节序 <br/>
+
+    `fast_obstream` 不会转换任何字节序
+
 ## 语法
 
 ```cpp
 namespace yasio { 
-// 序列化过程，会自动转换字节序，适用于网络传输
 using obstream = basic_obstream<endian::network_convert_tag>;
-
-// 序列化过程，无字节序转换，性能更快
 using fast_obstream = basic_obstream<endian::host_convert_tag>;
 }
 ```
@@ -32,22 +37,16 @@ using fast_obstream = basic_obstream<endian::host_convert_tag>;
 
 |Name|Description|
 |----------|-----------------|
-|[obstream::write](#write)|Function template, write number value.|
-|[obstream::write_ix](#write_ix)|Function template, write **7bit Encoded Int/Int64**.|
-|[obstream::write_v](#write_v)|Write blob data with **7bit Encoded Int lenght field**.|
-|[obstream::write_byte](#write_byte)|Write 1 byte.|
-|[obstream::write_bytes](#write_bytes)|Write blob data without length field.|
-|[obstream::empty](#empty)|Check is stream empty.|
-|[obstream::data](#data)|Retrieves stream data pointer.|
-|[obstream::length](#length)|Retrieves size of stream.|
-|[obstream::buffer](#buffer)|Retrieves the buffer object of the stream.|
-|[obstream::save](#save)|Save the stream binary data to file.|
-
-## 注意
-
-`obstream` 当写入int16~int64和float/double类型是, 会自动将主机字节序转换问网络字节序 <br/>
-
-`fast_obstream` 不会转换任何字节序
+|[obstream::write](#write)|函数模板，写入数值|
+|[obstream::write_ix](#write_ix)|函数模板**7bit Encoded Int/Int64**数值|
+|[obstream::write_v](#write_v)|写入带长度域(**7bit Encoded Int**)的二进制数据|
+|[obstream::write_byte](#write_byte)|写入1个字节|
+|[obstream::write_bytes](#write_bytes)|写入指定长度二进制数据|
+|[obstream::empty](#empty)|检查流是否为空|
+|[obstream::data](#data)|获取流数据指针|
+|[obstream::length](#length)|获取流数据大小|
+|[obstream::buffer](#buffer)|获取流内部缓冲区|
+|[obstream::save](#save)|保存流二进制数据到文件系统|
 
 ## 要求
 
