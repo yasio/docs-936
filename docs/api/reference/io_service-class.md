@@ -100,7 +100,7 @@ int main() {
 void start(io_event_cb_t cb);
 ```
 
-### Parameters
+### 参数
 
 *cb*<br/>
 网络事件回调，默认情况下在 [io_service::dispatch](#dispatch) 调用者线程调度。
@@ -147,7 +147,7 @@ void stop()
 void open(size_t cindex, int kind);
 ```
 
-### Parameters
+### 参数
 
 *cindex*<br/>
 信道索引。
@@ -182,7 +182,7 @@ void close(transport_handle_t transport);
 void close(int cindex);
 ```
 
-### Parameters
+### 参数
 
 *transport*<br/>
 将要关闭的传输会话。

@@ -63,7 +63,7 @@ ibstream_view(const void* data, size_t size);
 ibstream_view(const obstream* obs);
 ```
 
-### Parameters
+### 参数
 
 *data*<br/>
 待反序列化二进制数据首地址。
@@ -83,7 +83,7 @@ ibstream_view(const obstream* obs);
 void ibstream_view::reset(const void* data, size_t size);
 ```
 
-### Parameters
+### 参数
 
 *data*<br/>
 待反序列化二进制数据首地址。
