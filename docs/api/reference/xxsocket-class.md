@@ -7,7 +7,7 @@ helpviewer_keywords: []
 
 # xxsocket Class
 
-封装底层bsd socket常用API，屏蔽各操作系统平台差异。
+封装底层bsd socket常用API，屏蔽各操作系统平台差异，yasio的起源。
 
 !!! attention "特别注意"
 
