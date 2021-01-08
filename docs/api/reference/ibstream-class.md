@@ -57,7 +57,7 @@ using fast_ibstream_view = basic_ibstream_view<endian::host_convert_tag>;
 
 ## <a name="ibstream_view"></a> ibstream_view::ibstream_view
 
-构造一个 `ibstream_view` 对象.
+构造一个 `ibstream_view` 对象。
 
 ```cpp
 ibstream_view();
@@ -150,7 +150,7 @@ cxx17::string_view read_v();
 
 ### 注意
 
-本函数会先读取7bit Encoded Int压缩编码的长度值，再调用 [read_bytes](#read_bytes) 读取二进制字节数据.
+本函数会先读取7bit Encoded Int压缩编码的长度值，再调用 [read_bytes](#read_bytes) 读取二进制字节数据。
 
 
 ## <a name="read_byte"></a> ibstream_view::read_byte
@@ -196,7 +196,7 @@ bool empty() const;
 
 ### 注意
 
-此方法等价于 [length](#length) == 0.
+此方法等价于 [length](#length) == 0。
 
 ## <a name="data"></a> ibstream_view::data
 
@@ -264,13 +264,13 @@ using fast_ibstream = basic_ibstream<endian::host_convert_tag>;
 
 |Name|Description|
 |----------|-----------------|
-|[ibstream::ibstream](#ibstream)|Constructs a `ibstream` object.|
+|[ibstream::ibstream](#ibstream)|构造1个 `ibstream` 对象|
 
 ### 公共方法
 
 |Name|Description|
 |----------|-----------------|
-|[ibstream::load](#load)|从文件加载流.|
+|[ibstream::load](#load)|从文件加载流|
 
 ### <a name="inheritance-hierarchy"></a> 继承层次结构
 [ibstream_view](#ibstream_view)
@@ -279,7 +279,7 @@ using fast_ibstream = basic_ibstream<endian::host_convert_tag>;
 
 ## <a name="ibstream"></a> ibstream::ibstream
 
-构造一个 `ibstream` 对象.
+构造一个 `ibstream` 对象。
 
 ```cpp
 ibstream(std::vector<char> blob);
