@@ -6,7 +6,7 @@ edit_uri: edit/master/docs
 copyright: Copyright &copy; 2012 - 2021 yasio.org.
 theme:
   name: material
-  language: en
+  language: zh
 nav:
   - 主页: index.md
   - API 参考:
@@ -58,6 +58,7 @@ plugins:
       lang:
         - en
         - ja
+      separator: '[\s\-\，\。]+'
   - pdf-export:
       verbose: false
       media_type: print
