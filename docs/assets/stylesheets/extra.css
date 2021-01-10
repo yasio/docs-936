@@ -8,12 +8,6 @@
     @top-left {
         content: '© 2021 yasio.org';
     }
-    @top-center {
-        content: string(chapter);
-    }
-    @top-right {
-        content: 'Page ' counter(page);
-    }
 }
 
 body,input{
