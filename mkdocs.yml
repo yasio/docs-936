@@ -7,6 +7,8 @@ copyright: Copyright &copy; 2012 - 2021 yasio.org.
 theme:
   name: material
   language: zh
+  logo: assets/images/logo.png
+  favicon: assets/images/logo.png
 nav:
   - 主页: index.md
   - API 参考:
