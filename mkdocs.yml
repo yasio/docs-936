@@ -19,6 +19,7 @@ nav:
     - ibstream类: api/reference/ibstream-class.md
     - xxsocket类: api/reference/xxsocket-class.md
     - io_service选项: api/reference/io_service-options.md
+    - 其他常用API: api/reference/others.md
   - 预处理器: preprocessor.md
   - 常见问题: faq.md
 markdown_extensions:
