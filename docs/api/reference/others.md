@@ -12,9 +12,9 @@ namespace yasio {}
 |----------|-----------------|
 |[yasio::host_to_network](#host_to_network)|主机字节序转网络字节序|
 |[yasio::network_to_host](#network_to_host)|网络字节序转主机字节序|
-|[yasio::clock](#clock)|获取毫秒级时间戳|
-|[yasio::highp_clock](#highp_clock)|获取毫秒级时间戳|
 |[yasio::xhighp_clock](#xhighp_clock)|获取毫秒级时间戳|
+|[yasio::highp_clock](#highp_clock)|获取毫秒级时间戳|
+|[yasio::clock](#clock)|获取毫秒级时间戳|
 |[yasio::set_thread_name](#set_thread_name)|设置调用者线程名|
 |[yasio::basic_strfmt](#basic_strfmt)|格式化字符串|
 
@@ -60,7 +60,7 @@ int main(){
 }
 ```
 
-## <a name="host_to_network"></a> yasio::host_to_network
+## <a name="network_to_host"></a> yasio::network_to_host
 
 网络字节序转主机字节序。
 
