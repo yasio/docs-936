@@ -163,6 +163,7 @@ inline highp_time_t clock();
 ### 模板参数
 
 *_Ty*<br/>
+
 - `yasio::steady_clock_t`: 返回当前系统时间无关的时间戳
 - `yasio::system_clock_t`: 返回系统UTC时间戳
 
@@ -170,7 +171,7 @@ inline highp_time_t clock();
 
 毫秒级时间戳。
 
-## <a name="clock"></a> yasio::set_thread_name
+## <a name="set_thread_name"></a> yasio::set_thread_name
 
 设置调用者线程名。
 
@@ -191,7 +192,7 @@ inline void set_thread_name(const char* name);
 
 此函数用于诊断多线程程序非常有用。
 
-## <a name="clock"></a> yasio::basic_strfmt
+## <a name="basic_strfmt"></a> yasio::basic_strfmt
 
 函数模板，格式化字符串或者宽字符串。
 
