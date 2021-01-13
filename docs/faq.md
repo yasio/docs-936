@@ -21,8 +21,8 @@
 
 ??? question "macOS 上发送UDP失败，报错误码40，错误信息 `Message too long` 怎么办？"
 
-    - 原因: 数据包太大，macOS系统UDP发送缓冲区默认为**9126**字节。
-    - 解决方案: 通过socket选项将UDP发送缓冲区设置为65535。
+    - 原因: 数据包太大，macOS系统UDP发送缓冲区默认为 `9126` 字节。
+    - 解决方案: 通过socket选项将UDP发送缓冲区设置大一点，例如:
         - xxsocket接口设置方式为: `sock_udp.set_optval(SOL_SOCKET, SO_SNDBUF, (int)65535);`
         - io_service设置方式请参见: https://github.com/yasio/yasio/blob/master/tests/speed/main.cpp#L223
 
