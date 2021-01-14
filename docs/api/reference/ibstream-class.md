@@ -224,7 +224,7 @@ size_t length() const;
 
 当前流长度。
 
-## <a name="seek"></a> ibstream_view::advance
+## <a name="advance"></a> ibstream_view::advance
 
 向前移动流读取游标。
 
