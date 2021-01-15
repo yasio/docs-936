@@ -14,7 +14,7 @@
     需要程序员自己处理。
     2. yasio将连接管理，TCP拆包都封装到了底层。
     3. yasio将TCP,UDP,KCP统一抽象成Transport更加方便使用。
-    4. yasio更轻量基，所以平台均使用select。
+    4. yasio更轻量级，所有平台均使用select模型。
 
 ??? question "yasio是否支持非阻塞域名解析?"
 
