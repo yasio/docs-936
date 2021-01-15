@@ -8,7 +8,7 @@ yasio 中文文档markdown仓库, 文档构建工具: [mkdocs](https://www.mkdoc
 ## Install mkdocs with mkdocs-material
 
 - Install python3+
-- pip install -r requirements.txt
+- pip install -r docs/requirements.txt
 
 ## pdf-export
 
