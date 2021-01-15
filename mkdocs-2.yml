@@ -62,6 +62,8 @@ plugins:
         - en
         - ja
       separator: '[\s\-\，\。]+'
+  - minify:
+      minify_html: true
   - print-site:
       add_full_urls: false
       add_table_of_contents: true
@@ -69,7 +71,5 @@ plugins:
       enumerate_figures: true
       add_cover_page: true
       path_to_pdf: "pdf/yasio-latest.pdf"
-  - minify:
-      minify_html: true
 extra_css:
   - 'assets/stylesheets/extra.css'
