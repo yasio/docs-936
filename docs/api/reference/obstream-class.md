@@ -38,7 +38,7 @@ using fast_obstream = basic_obstream<endian::host_convert_tag>;
 |Name|Description|
 |----------|-----------------|
 |[obstream::write](#write)|函数模板，写入数值|
-|[obstream::write_ix](#write_ix)|函数模板**7bit Encoded Int/Int64**数值|
+|[obstream::write_ix](#write_ix)|函数模板，写入(**7bit Encoded Int/Int64**)数值|
 |[obstream::write_v](#write_v)|写入带长度域(**7bit Encoded Int**)的二进制数据|
 |[obstream::write_byte](#write_byte)|写入1个字节|
 |[obstream::write_bytes](#write_bytes)|写入指定长度二进制数据|
