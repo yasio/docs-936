@@ -136,7 +136,7 @@ yasio 是一个轻量级跨平台的异步socket库，专注于客户端和基�
 
 * 示例:
     * [ftp_server](https://github.com/yasio/ftp_server): 基于yasio实现的仅支持下载的ftp服务器，[点击](ftp://ftp.yasio.org/) 访问。
-    * [Lua](https://github.com/yasio/yasio/tree/master/examples/lua): Lua示例程序，包含简易的并发http请求，TCP拆包参数设置示例代码
+    * [lua](https://github.com/yasio/yasio/tree/master/examples/lua): Lua示例程序，包含简易的并发http请求，TCP拆包参数设置示例代码
     * [xlua](https://github.com/yasio/xLua): xlua集成案例
     * [DemoUE4](https://github.com/yasio/DemoUE4): UE4集成案例
 
