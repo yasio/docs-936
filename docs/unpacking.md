@@ -7,7 +7,7 @@ yasio的粘包处理不仅针对TCP，对于UDP，如果发送端有组包发送
 
 !!! attention "注意"
 
-    自定义解码包长度函数的实现需要避免ARM字节对齐问题，即从字节流中读取int值时，一定不要使用指针强转，避免SIG_BUS异常。可以参考内置解码包长度函数实现 `io_channel::__builtin_decode_len`。
+    自定义解码包长度函数实现时，当从字节流中读取int值时，一定不要使用指针强转，否则可能触发ARM芯片字节对齐问题 `SIGBUS` 异常闪退。可以参考内置解码包长度函数实现 `io_channel::__builtin_decode_len`。
 
 ## <a name="lfbfd_params"></a> YOPT_C_LFBFD_PARAMS
 
