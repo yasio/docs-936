@@ -5,7 +5,7 @@
 
 ```csharp
 class NSM {
-const string LIBNAME = "xlua";
+const string LIBNAME = "yasio-ni";
 
 public delegate void YNIEventDelegate(uint emask, int cidx, IntPtr sid, IntPtr bytes, int len);
 public delegate int YNIResolvDelegate(string host, IntPtr sbuf);
