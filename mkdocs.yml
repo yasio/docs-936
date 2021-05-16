@@ -74,3 +74,6 @@ plugins:
       minify_html: true
 extra_css:
   - 'assets/stylesheets/extra.css'
+extra:
+  version:
+    provider: mike
