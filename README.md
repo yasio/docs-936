@@ -1,9 +1,6 @@
-# yasio-docs-936
+# yasio-docs-936 (废弃的)
 
 yasio 中文文档markdown仓库, 文档构建工具: [mkdocs](https://www.mkdocs.org/)
-
-* 文档站点: https://yasio.org/
-* 备用站点: http://docs.simdsoft.com:3003/yasio/
 
 ## Install mkdocs with mkdocs-material
 
